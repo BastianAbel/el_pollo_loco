@@ -6,9 +6,15 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
     currentImage = 0;
+    offset = {
+        left : 20,
+        top : 50,
+        right : 5,
+        bottom : 15
+    }
     width = 250;
     height = 300;
-    y = 130;
+    y = 135;
 
     constructor() {
         super().loadImg('img/4_enemie_boss_chicken/1_walk/G1.png');
@@ -19,9 +25,9 @@ class Endboss extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
-            this.moveLeft(); 
-        }, 1000 / 60)
+        // setInterval(() => {
+        //     this.moveLeft(); 
+        // }, 1000 / 60)
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 1000 / 10    );

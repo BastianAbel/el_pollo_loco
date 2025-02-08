@@ -18,13 +18,13 @@ class Character extends MoveableObject {
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
     ];
+    currentImage = 0;
     offset = {
         left : 30,
         top : 120,
-        right : 75,
-        bottom : 130
+        right : 45,
+        bottom : 10
     }
-    currentImage = 0;
     world;
     speed = 4;
     flipImage = false;
