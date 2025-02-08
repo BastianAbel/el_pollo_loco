@@ -11,10 +11,21 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.draw();
+        this.checkCollisions();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy)) {
+                    console.log('oof');
+                }
+            })
+        }, 1000 / 5)
     }
 
     draw() {
@@ -23,9 +34,9 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         
         this.addArrayToMap(this.level.backgroundObjects)
+        this.addArrayToMap(this.level.clouds)
         this.addToMap(this.character);
         this.addArrayToMap(this.level.enemies)
-        this.addArrayToMap(this.level.clouds)
         
         this.ctx.translate(-this.camera_x, 0);
 
@@ -40,25 +51,7 @@ class World {
     }
 
     addToMap(obj) {
-        this.ctx.save();
-        this.applyTransformations(obj);
-        this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
-        this.removeTransformations(obj);
-        this.ctx.restore();
+        obj.draw(this.ctx);
+        obj.drawFrame(this.ctx);        
     }
-
-    applyTransformations(obj) {
-        if (obj.flipImage) {
-            this.ctx.translate(obj.width, 0);
-            this.ctx.scale(-1, 1);
-            obj.x = obj.x * -1
-        }
-    }
-
-    removeTransformations(obj) {
-        if (obj.flipImage) {
-            obj.x = obj.x * -1
-        }
-    }
-
 }
