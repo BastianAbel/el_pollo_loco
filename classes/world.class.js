@@ -8,7 +8,7 @@ class World {
         new BackgroundObject('img/5_background/layers/2_second_layer/1.png'),
         new BackgroundObject('img/5_background/layers/1_first_layer/1.png'),
     ];
-    character = new Character();
+    character = new Character(this);
     enemies = [new Chicken, new Chicken, new Chicken]
     clouds = [
         new Cloud('img/5_background/layers/4_clouds/1.png')
@@ -44,6 +44,25 @@ class World {
     }
 
     addToMap(obj) {
-        this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height)
+        this.ctx.save();
+        this.applyTransformations(obj);
+        this.ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
+        this.removeTransformations(obj);
+        this.ctx.restore();
     }
+
+    applyTransformations(obj) {
+        if (obj.flipImage) {
+            this.ctx.translate(obj.width, 0);
+            this.ctx.scale(-1, 1);
+            obj.x = obj.x * -1
+        }
+    }
+
+    removeTransformations(obj) {
+        if (obj.flipImage) {
+            obj.x = obj.x * -1
+        }
+    }
+
 }

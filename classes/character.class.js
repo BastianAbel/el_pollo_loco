@@ -8,21 +8,37 @@ class Character extends MoveableObject {
         'img/2_character_pepe/2_walk/W-26.png',
     ];
     currentImage = 0;
+    world;
+    speed = 4;
+    flipImage = false;
 
-    constructor() {
+    constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.walkAnimationImages);
         this.animate();
+        this.world = world;
     }
 
 
     animate() {
         setInterval(() => {
-            let i = this.currentImage % this.walkAnimationImages.length;
-            let path = this.walkAnimationImages[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;    
-        }, 1000 / 12    );
+            if (this.world.keyboard.right) {
+                this.moveRight();
+                this.flipImage = false;
+            } else if (this.world.keyboard.left) {
+                this.moveLeft();
+                this.flipImage = true;
+            }
+        }, 1000 / 60)
+
+        setInterval(() => {
+            if (this.world.keyboard.right || this.world.keyboard.left) {
+                let i = this.currentImage % this.walkAnimationImages.length;
+                let path = this.walkAnimationImages[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 1000 / 12);
     }
 
     jump() {
