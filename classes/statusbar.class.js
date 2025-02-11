@@ -15,8 +15,8 @@ class Statusbar extends DrawableObject {
         this.background.src = 'img/7_statusbars/4_bar_elements/statusbar_empty.png';
         this.icon.src = iconImgPath;
         this.bar.src = 'img/7_statusbars/4_bar_elements/statusbar_green.png';
-        this.x = 20;
-        this.iconX = this.x - 18;
+        this.x = 25;
+        this.iconX = this.x - 28;
         this.y = y;
         this.iconY = y - 6;
     }
