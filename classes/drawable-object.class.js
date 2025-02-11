@@ -1,19 +1,23 @@
-class MoveableObject {
+class DrawableObject {
     x = 50;
     y = 127;
     img;
     height = 300;
     width = 150;
-    speed = 1;
-    imageCache = {};
-    offset = {};
 
+    constructor() {}
 
     draw(ctx) {
         ctx.save();
         this.applyTransformations(ctx);
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         ctx.restore();
+    }
+
+    drawStatusBar(ctx) {
+        ctx.drawImage(this.background, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.bar, this.x, this.y, this.barWidth, this.height);
+        ctx.drawImage(this.icon, this.iconX, this.iconY, this.iconSize, this.iconSize);
     }
 
     drawFrame(ctx) {
@@ -63,40 +67,4 @@ class MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
-    moveRight() {
-        this.x = this.x + this.speed;
-    };
-
-    moveLeft() {
-        this.x -= this.speed
-    }
-
-    jump() {
-        if (!this.isAboveGround()) {
-            this.speedY = 15;
-        }
-    }
-
-    isColliding(obj) {
-        const object1 = this.getBounds();
-        const object2 = obj.getBounds();
-        
-        return object1.left < object2.right &&
-        object1.right > object2.left &&
-        object1.top < object2.bottom &&
-        object1.bottom > object2.top;
-    }
-
-    getBounds() {
-        let bounds = {
-            left : this.x + this.offset.left,
-            right : this.x + this.width - this.offset.right,
-            top : this.y + this.offset.top,
-            bottom : this.y + this.height - this.offset.bottom,    
-        }
-        return bounds
-    }
-    
-
 }

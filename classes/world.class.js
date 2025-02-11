@@ -5,6 +5,9 @@ class World {
     level = level_1;
     character = new Character(this);
     camera_x = 0;
+    healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10);
+    bottleBar = new Statusbar('img/7_statusbars/3_icons/icon_salsa_bottle.png', 54);
+    coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94);
 
     constructor(canvas) {
         this.setWorld();
@@ -22,7 +25,9 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
-                    console.log('oof');
+                    if(!this.character.isDead()) {
+                        this.character.hp -= 5;
+                    }
                 }
             })
         }, 1000 / 5)
@@ -31,14 +36,23 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        
         this.ctx.translate(this.camera_x, 0);
         
         this.addArrayToMap(this.level.backgroundObjects)
         this.addArrayToMap(this.level.clouds)
+        
+        this.ctx.translate(-this.camera_x, 0);
+        this.healthBar.drawStatusBar(this.ctx);
+        this.bottleBar.drawStatusBar(this.ctx);
+        this.coinBar.drawStatusBar(this.ctx);
+        this.ctx.translate(this.camera_x, 0);
+
         this.addToMap(this.character);
         this.addArrayToMap(this.level.enemies)
         
         this.ctx.translate(-this.camera_x, 0);
+
 
         let self = this;
         requestAnimationFrame(function () { self.draw() })
