@@ -26,10 +26,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     if(!this.character.isDead()) {
-                        this.character.hp -= 5;
-                        this.healthBar.barWidth = this.healthBar.width * (this.character.hp / 100)
-                        console.log(this.character.hp)
-                        console.log(this.healthBar.barWidth)
+                        this.character.hurt(enemy.damage);
                     }
                 }
             })

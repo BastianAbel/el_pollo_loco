@@ -21,4 +21,8 @@ class Statusbar extends DrawableObject {
         this.iconY = y - 6;
     }
 
+    updateStatusbar(percent) {
+        this.barWidth = this.width * percent
+    }
+
 }

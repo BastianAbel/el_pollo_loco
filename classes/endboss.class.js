@@ -15,6 +15,7 @@ class Endboss extends MovableObject {
     width = 250;
     height = 300;
     y = 135;
+    damage = 20;
 
     constructor() {
         super().loadImg('img/4_enemie_boss_chicken/1_walk/G1.png');

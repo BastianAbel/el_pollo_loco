@@ -95,4 +95,9 @@ class Character extends MovableObject {
     isAboveGround() {
         return this.y < 128
     }
+
+    hurt(dmg) {
+        this.hp -= dmg;
+        this.world.healthBar.updateStatusbar(this.hp / 100);
+    }
 }
