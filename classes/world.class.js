@@ -35,10 +35,11 @@ class World {
                     this.character.collectBottle(bottle);
                 }
             })
-            // this.level.coins.forEach((coin) => {
-            //     if(this.character.isColliding(coin)) {
-            //     }
-            // })
+            this.level.coins.forEach((coin) => {
+                if(this.character.isColliding(coin)) {
+                    this.character.collectCoin(coin);
+                }
+            })
         }, 1000 / 5)
     }
 

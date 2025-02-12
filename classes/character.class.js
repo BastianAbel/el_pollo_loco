@@ -41,7 +41,7 @@ class Character extends MovableObject {
     speedY = 0;
     acceleration = 0.5;
     y = 50;
-    coins;
+    coins = 0;
     bottles = 0;
 
     constructor(world) {
@@ -108,6 +108,14 @@ class Character extends MovableObject {
             this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
+        }
+    }
+
+    collectCoin(coin) {
+        if(this.coins < 10) {
+            this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
+            this.coins += 1;
+            this.world.coinBar.updateStatusbar(this.coins / 10);
         }
     }
 }
