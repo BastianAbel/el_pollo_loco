@@ -41,6 +41,8 @@ class Character extends MovableObject {
     speedY = 0;
     acceleration = 0.5;
     y = 50;
+    coins;
+    bottles = 0;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -99,5 +101,13 @@ class Character extends MovableObject {
     hurt(dmg) {
         this.hp -= dmg;
         this.world.healthBar.updateStatusbar(this.hp / 100);
+    }
+
+    collectBottle(bottle) {
+        if(this.bottles < 10) {
+            this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
+            this.bottles += 1;
+            this.world.bottleBar.updateStatusbar(this.bottles / 10);
+        }
     }
 }

@@ -5,9 +5,9 @@ class World {
     level = level_1;
     character = new Character(this);
     camera_x = 0;
-    healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10);
-    bottleBar = new Statusbar('img/7_statusbars/3_icons/icon_salsa_bottle.png', 54);
-    coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94);
+    healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10, 1);
+    bottleBar = new Statusbar('img/7_statusbars/3_icons/icon_salsa_bottle.png', 54, 0);
+    coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94, 0);
 
     constructor(canvas) {
         this.setWorld();
@@ -30,6 +30,15 @@ class World {
                     }
                 }
             })
+            this.level.bottles.forEach((bottle) => {
+                if(this.character.isColliding(bottle)) {
+                    this.character.collectBottle(bottle);
+                }
+            })
+            // this.level.coins.forEach((coin) => {
+            //     if(this.character.isColliding(coin)) {
+            //     }
+            // })
         }, 1000 / 5)
     }
 
@@ -41,6 +50,8 @@ class World {
         
         this.addArrayToMap(this.level.backgroundObjects)
         this.addArrayToMap(this.level.clouds)
+        this.addArrayToMap(this.level.bottles)
+        this.addArrayToMap(this.level.coins)
         
         this.ctx.translate(-this.camera_x, 0);
         this.healthBar.drawStatusBar(this.ctx);

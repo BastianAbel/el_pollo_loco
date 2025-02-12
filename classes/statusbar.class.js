@@ -4,13 +4,13 @@ class Statusbar extends DrawableObject {
     bar = new Image();
     width = 200;
     height = 60;
-    barWidth = 200;
+    barWidth;
     iconSize = 55;
     iconY;
     iconX;
     flipImage = false;
 
-    constructor(iconImgPath, y) {
+    constructor(iconImgPath, y, barWidth) {
         super();
         this.background.src = 'img/7_statusbars/4_bar_elements/statusbar_empty.png';
         this.icon.src = iconImgPath;
@@ -19,6 +19,7 @@ class Statusbar extends DrawableObject {
         this.iconX = this.x - 28;
         this.y = y;
         this.iconY = y - 6;
+        this.barWidth = this.width * barWidth;
     }
 
     updateStatusbar(percent) {

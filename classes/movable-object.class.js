@@ -31,16 +31,6 @@ class MovableObject extends DrawableObject {
         object1.top < object2.bottom &&
         object1.bottom > object2.top;
     }
-
-    getBounds() {
-        let bounds = {
-            left : this.x + this.offset.left,
-            right : this.x + this.width - this.offset.right,
-            top : this.y + this.offset.top,
-            bottom : this.y + this.height - this.offset.bottom,    
-        }
-        return bounds
-    }
     
     isDead() {
         if(this.hp <= 0) {

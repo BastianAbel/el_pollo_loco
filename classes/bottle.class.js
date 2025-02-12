@@ -1,6 +1,6 @@
-class CollectableObject extends DrawableObject {
+class Bottle extends CollectableObject {
     offset = {
-        left : 30,
+        left : 0,
         top : 0,
         right : 0,
         bottom : 0
@@ -9,9 +9,9 @@ class CollectableObject extends DrawableObject {
 
     constructor(imgPath) {
         super().loadImg(imgPath);
-        this.height = 115;
-        this.width = 115;
-        this.y = 315;
+        this.height = 84;
+        this.width = 45;
+        this.y = 335;
         this.x = Math.random() * 500 + 200;
     }
 }

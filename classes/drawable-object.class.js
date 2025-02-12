@@ -4,6 +4,8 @@ class DrawableObject {
     img;
     height = 300;
     width = 150;
+    offset;
+    flipImage;
 
     constructor() {}
 
@@ -21,7 +23,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -67,4 +69,15 @@ class DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+
+    getBounds() {
+        let bounds = {
+            left : this.x + this.offset.left,
+            right : this.x + this.width - this.offset.right,
+            top : this.y + this.offset.top,
+            bottom : this.y + this.height - this.offset.bottom,    
+        }
+        return bounds
+    }
+
 }
