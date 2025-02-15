@@ -26,8 +26,36 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
-    ]
-    currentImage = 0;
+    ];
+    IMAGES_IDLE = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
+    ];
+    IMAGES_LONG_IDLE = [
+        'img/2_character_pepe/1_idle/idle/I-11.png',
+        'img/2_character_pepe/1_idle/idle/I-12.png',
+        'img/2_character_pepe/1_idle/idle/I-13.png',
+        'img/2_character_pepe/1_idle/idle/I-14.png',
+        'img/2_character_pepe/1_idle/idle/I-15.png',
+        'img/2_character_pepe/1_idle/idle/I-16.png',
+        'img/2_character_pepe/1_idle/idle/I-17.png',
+        'img/2_character_pepe/1_idle/idle/I-18.png',
+        'img/2_character_pepe/1_idle/idle/I-19.png',
+        'img/2_character_pepe/1_idle/idle/I-20.png'
+    ];
+    IMAGES_HURT = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png'
+    ];
     offset = {
         left : 30,
         top : 120,
@@ -35,14 +63,11 @@ class Character extends MovableObject {
         bottom : 10
     }
     world;
-    speed = 4;
-    flipImage = false;
 
-    speedY = 0;
-    acceleration = 0.5;
     y = 50;
     coins = 0;
     bottles = 0;
+    baseY = 128;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -51,6 +76,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.animate();
         this.world = world;
+        this.speed = this.baseSpeed;
     }
 
 
@@ -73,6 +99,9 @@ class Character extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
+            if (this.world.keyboard.throw) {
+                this.throw()
+            }
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.world.keyboard.jump || this.isAboveGround()) {
@@ -83,19 +112,6 @@ class Character extends MovableObject {
         }, 1000 / 10);
 
         this.applyGravity()
-    }
-
-    applyGravity() {
-        setInterval(() => {
-            if (this.isAboveGround() || this.speedY > 0) {
-                this.y -= this.speedY
-                this.speedY -= this.acceleration
-            }
-        }, 1000 / 60)
-    }
-
-    isAboveGround() {
-        return this.y < 128
     }
 
     hurt(dmg) {
@@ -116,6 +132,14 @@ class Character extends MovableObject {
             this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
             this.coins += 1;
             this.world.coinBar.updateStatusbar(this.coins / 10);
+        }
+    }
+
+    throw() {
+        if(this.bottles > 0) {
+            this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y))
+            this.bottles -= 1;
+            this.world.bottleBar.updateStatusbar(this.bottles / 10);
         }
     }
 }

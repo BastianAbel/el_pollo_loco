@@ -42,15 +42,15 @@ const level_1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        // new Chicken,
-        // new Chicken,
-        // new Chicken,
-        // new Endboss
+        new Chicken,
+        new Chicken,
+        new Chicken,
+        new Endboss
     ],
     bottles = [
-        new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-        new Bottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
-        new Bottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png')
+        new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+        new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
+        new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png')
     ],
     coins = [
         new Coin(),

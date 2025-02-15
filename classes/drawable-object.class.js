@@ -1,11 +1,12 @@
 class DrawableObject {
+    currentImage = 0;
     x = 50;
     y = 127;
     img;
     height = 300;
     width = 150;
     offset;
-    flipImage;
+    flipImage = false;
 
     constructor() {}
 

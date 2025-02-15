@@ -1,4 +1,4 @@
-class Bottle extends CollectableObject {
+class CollectableBottle extends CollectableObject {
     offset = {
         left : 0,
         top : 0,

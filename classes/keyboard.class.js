@@ -4,6 +4,7 @@ class Keyboard {
         'KeyD': 'right',
         'KeyW': 'up',
         'KeyS': 'down',
+        'KeyE': 'throw',
         'Space': 'jump'
     }
 
@@ -12,6 +13,7 @@ class Keyboard {
     up = false;
     down = false;
     jump = false;
+    throw = false;
 
     constructor() {
         window.addEventListener('keydown', (event) => {this.setInput(event, true);});

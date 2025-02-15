@@ -8,6 +8,7 @@ class World {
     healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10, 1);
     bottleBar = new Statusbar('img/7_statusbars/3_icons/icon_salsa_bottle.png', 54, 0);
     coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94, 0);
+    throwables = [];
 
     constructor(canvas) {
         this.setWorld();
@@ -40,7 +41,7 @@ class World {
                     this.character.collectCoin(coin);
                 }
             })
-        }, 1000 / 5)
+        }, 1000 / 10)
     }
 
     draw() {
@@ -61,7 +62,8 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
-        this.addArrayToMap(this.level.enemies)
+        this.addArrayToMap(this.level.enemies);
+        this.addArrayToMap(this.throwables);
         
         this.ctx.translate(-this.camera_x, 0);
 

@@ -1,5 +1,8 @@
 class MovableObject extends DrawableObject {
-    speed = 1;
+    acceleration = 0.5;
+    speedY = 0;
+    baseSpeed = 4;
+    speed;
     imageCache = {};
     offset = {};
     hp = 100;
@@ -37,4 +40,18 @@ class MovableObject extends DrawableObject {
             return true
         }
     }
+
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY
+                this.speedY -= this.acceleration
+            }
+        }, 1000 / 60)
+    }
+
+    isAboveGround() {
+        return this.y < this.baseY
+    }
+
 }
