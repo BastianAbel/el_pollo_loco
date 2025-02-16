@@ -56,15 +56,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
-    offset = {
-        left : 30,
-        top : 120,
-        right : 45,
-        bottom : 10
-    }
     world;
-
-    y = 50;
     coins = 0;
     bottles = 0;
     baseY = 128;
@@ -77,6 +69,11 @@ class Character extends MovableObject {
         this.animate();
         this.world = world;
         this.speed = this.baseSpeed;
+        this.y = this.baseY;
+        this.height = 300;
+        this.width = 150;    
+        this.offset = { left : 30, top : 120, right : 45, bottom : 10 }
+    
     }
 
 

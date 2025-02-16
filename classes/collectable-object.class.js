@@ -1,17 +1,6 @@
 class CollectableObject extends DrawableObject {
-    offset = {
-        left : 30,
-        top : 0,
-        right : 0,
-        bottom : 0
-    }
 
-
-    constructor(imgPath) {
-        super().loadImg(imgPath);
-        this.height = 115;
-        this.width = 115;
-        this.y = 315;
-        this.x = Math.random() * 500 + 200;
+    constructor() {
+        super()
     }
 }
