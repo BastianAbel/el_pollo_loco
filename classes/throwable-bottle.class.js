@@ -15,19 +15,19 @@ class ThrowableBottle extends ThrowableObject {
         this.x = x + 90;
         this.y = y + 140;
         this.world = world;
-        this.animate();
     }
 
-    animate() {
+    updateMovement() {
         this.applyGravity();
-        this.int = setInterval(() => {
-            if(this.isAboveGround()) {
-                this.moveRight()
-            } else {
-                clearInterval(this.int)
-                this.world.throwables = this.world.throwables.filter(t => t !== this);
-            }
-            
-        }, 1000 / 60)
+        if(this.isAboveGround()) {
+            this.moveRight()
+        } else {
+            this.world.throwables = this.world.throwables.filter(t => t !== this);
+        }
     }
+
+    updateAnimation() {
+
+    }
+
 }

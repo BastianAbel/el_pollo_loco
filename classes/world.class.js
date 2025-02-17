@@ -1,4 +1,8 @@
 class World {
+    animationFrameId;
+    animationInterval;
+    movementInterval;
+    collisionInterval;
     keyboard = new Keyboard;
     canvas;
     ctx;
@@ -14,8 +18,21 @@ class World {
         this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
-        this.draw();
-        this.checkCollisions();
+        this.startGame()
+    }
+
+    startGame() {
+        this.draw()
+        this.animationInterval = setInterval(() => {this.updateAnimations()}, 1000 / 10)
+        this.movementInterval = setInterval(() => {this.updateMovements()}, 1000 / 60)
+        this.collisionInterval = setInterval(() => {this.checkCollisions()}, 1000 / 30)
+    }
+
+    stopGame() {
+        cancelAnimationFrame(this.animationFrameId);
+        clearInterval(this.animationInterval);
+        clearInterval(this.movementInterval);
+        clearInterval(this.collisionInterval);
     }
 
     setWorld() {
@@ -23,7 +40,6 @@ class World {
     }
 
     checkCollisions() {
-        setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
                     if(!this.character.isDead()) {
@@ -41,7 +57,6 @@ class World {
                     this.character.collectCoin(coin);
                 }
             })
-        }, 1000 / 10)
     }
 
     draw() {
@@ -69,7 +84,7 @@ class World {
 
 
         let self = this;
-        requestAnimationFrame(function () { self.draw() })
+        this.animationFrameId = requestAnimationFrame(function () { self.draw() })
     }
 
     addArrayToMap(array) {
@@ -82,4 +97,38 @@ class World {
         obj.draw(this.ctx);
         // obj.drawFrame(this.ctx);        
     }
+
+    updateMovements() {
+        this.updateArrayMovement(this.level.clouds);
+        this.character.updateMovement();
+        this.updateArrayMovement(this.level.enemies);
+        this.updateArrayMovement(this.throwables)
+    }
+
+    updateArrayMovement(array) {
+        array.forEach(e => {
+            e.updateMovement();
+        })
+    }
+
+    updateAnimations() {
+        this.character.updateAnimation();
+        this.updateArrayAnimation(this.level.enemies);
+        this.updateArrayAnimation(this.throwables);
+    }
+
+    updateArrayAnimation(array) {
+        array.forEach(e => {
+            e.updateAnimation();
+        })
+    }
+
+    updateMovement() {
+
+    }
+
+    updateAnimation() {
+
+    }
+
 }
