@@ -115,30 +115,11 @@ class Character extends MovableObject {
     }
 
     animateJump(images) {
-        if(this.speedY === 15) {
-            let path = images[1];
-            this.img = this.imageCache[path];
-        } else if(this.speedY > 12) {
-            let path = images[2];
-            this.img = this.imageCache[path];
-        }else if(this.speedY > 8) {
-            let path = images[3];
-            this.img = this.imageCache[path];
-        }else if(this.speedY < 6 && this.speedY > -1) {
-            let path = images[4];
-            this.img = this.imageCache[path];
-        }else if(this.speedY < 0 && this.speedY > -5) {
-            let path = images[5];
-            this.img = this.imageCache[path];
-        }else if(this.speedY < -8 && this.speedY > -1) {
-            let path = images[6];
-            this.img = this.imageCache[path];
-        }else if(this.speedY < -12) {
-            let path = images[7];
-            this.img = this.imageCache[path];
-        }
+        const thresholds = [15, 12, 8, 6, 0, -5, -8, -12];
+        let index = thresholds.findIndex(threshold => this.speedY >= threshold);
+        this.img = this.imageCache[images[index !== -1 ? index : images.length - 1]];
     }
-
+    
     hurt(dmg) {
         this.hp -= dmg;
         this.world.healthBar.updateStatusbar(this.hp / 100);
