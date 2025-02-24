@@ -61,6 +61,7 @@ class Character extends MovableObject {
     bottles = 0;
     baseY = 128;
     currentAnimation;
+    idle = false;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -76,7 +77,6 @@ class Character extends MovableObject {
         this.height = 300;
         this.width = 150;    
         this.offset = { left : 30, top : 120, right : 45, bottom : 10 }
-    
     }
 
     updateMovement() {
@@ -105,12 +105,36 @@ class Character extends MovableObject {
     updateAnimation() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
+            this.resetIdle();
         } else if (this.world.keyboard.jump || this.isAboveGround()) {
             this.animateJump(this.IMAGES_JUMPING);
+            this.resetIdle();
         } else if (this.world.keyboard.right || this.world.keyboard.left) {
             this.playAnimation(this.IMAGES_WALKING);
+            this.resetIdle();
         } else {
+            this.setIdle();
+            this.playIdleAnimation();
+        }
+    }
+
+    setIdle() {
+        if(!this.idle) {
+            this.idle = true;
+            this.lastIdle = new Date().getTime();
+        }
+    }
+
+    resetIdle() {
+        this.idle = false;
+    }
+
+    playIdleAnimation() {
+        let currentTime = new Date().getTime();
+        if(this.lastIdle + 5000 > currentTime) {
             this.playAnimation(this.IMAGES_IDLE);
+        } else {
+            this.playAnimation(this.IMAGES_LONG_IDLE);
         }
     }
 
