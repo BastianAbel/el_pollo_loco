@@ -13,4 +13,16 @@ class SmallChicken extends Chicken {
         this.speed = this.baseSpeed * (Math.random() * 0.5) + 0.3;
         this.offset = { left : 14, top : 10, right : 14, bottom : 10 }    
     }
+
+    updateMovement() {
+        this.applyGravity();
+        if(!this.isAboveGround()) {
+            let randomNumber = Math.random() * 1000;
+            if(randomNumber > 995) {
+                this.speedY = 10;
+            }
+        }
+        this.moveLeft(); 
+    }
+
 }

@@ -63,6 +63,8 @@ class Character extends MovableObject {
     idle = false;
     lastHurt = 0;
     dead = false;
+    throwing = false;
+    thowingInterval;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -85,7 +87,9 @@ class Character extends MovableObject {
             this.applyGravity()
 
             if (this.world.keyboard.throw) {
-                this.throw()
+                this.startThrowing();
+            } else {
+                this.stopThrowing();
             }
 
             if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
@@ -186,11 +190,29 @@ class Character extends MovableObject {
         }
     }
 
-    throw() {
-        if (this.bottles > 0) {
-            this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y))
-            this.bottles -= 1;
-            this.world.bottleBar.updateStatusbar(this.bottles / 10);
+    startThrowing() {
+        if (!this.throwing && this.bottles > 0) {
+            this.throwing = true;
+            this.throw();
+            this.thowingInterval = setInterval(() => {
+                this.throw();
+                if (this.bottles <= 0) {
+                    this.stopThrowing();
+                }
+            }, 250)
         }
+    }
+
+    stopThrowing() {
+        if (this.throwing) {
+            clearInterval(this.thowingInterval);
+            this.throwing = false
+        }
+    }
+
+    throw() {
+        this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y))
+        this.bottles -= 1;
+        this.world.bottleBar.updateStatusbar(this.bottles / 10);
     }
 }
