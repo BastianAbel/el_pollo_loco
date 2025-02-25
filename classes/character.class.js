@@ -60,8 +60,9 @@ class Character extends MovableObject {
     coins = 0;
     bottles = 0;
     baseY = 128;
-    currentAnimation;
     idle = false;
+    lastHurt = 0;
+    dead = false;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -75,39 +76,43 @@ class Character extends MovableObject {
         this.speed = this.baseSpeed;
         this.y = this.baseY;
         this.height = 300;
-        this.width = 150;    
-        this.offset = { left : 30, top : 120, right : 45, bottom : 10 }
+        this.width = 150;
+        this.offset = { left: 30, top: 120, right: 45, bottom: 10 }
     }
 
     updateMovement() {
-        this.applyGravity()
+        if (!this.isDead()) {
+            this.applyGravity()
 
-        if (this.world.keyboard.throw) {
-            this.throw()
-        }
+            if (this.world.keyboard.throw) {
+                this.throw()
+            }
 
-        if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
-            this.moveRight();
-            this.flipImage = false;
+            if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
+                this.moveRight();
+                this.flipImage = false;
+            }
+
+            if (this.world.keyboard.left && this.x > 0) {
+                this.moveLeft();
+                this.flipImage = true;
+            }
+
+            if (this.world.keyboard.jump) {
+                this.jump();
+            }
+            this.world.camera_x = -this.x + 100;
         }
-        
-        if (this.world.keyboard.left && this.x > 0) {
-            this.moveLeft();
-            this.flipImage = true;
-        }
-        
-        if(this.world.keyboard.jump) {
-            this.jump();
-        }
-        this.world.camera_x = -this.x + 100;
     }
 
     updateAnimation() {
         if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
+            this.playDeathAnimation();
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
             this.resetIdle();
         } else if (this.world.keyboard.jump || this.isAboveGround()) {
-            this.animateJump(this.IMAGES_JUMPING);
+            this.playJumpAnimation(this.IMAGES_JUMPING);
             this.resetIdle();
         } else if (this.world.keyboard.right || this.world.keyboard.left) {
             this.playAnimation(this.IMAGES_WALKING);
@@ -119,7 +124,7 @@ class Character extends MovableObject {
     }
 
     setIdle() {
-        if(!this.idle) {
+        if (!this.idle) {
             this.idle = true;
             this.lastIdle = new Date().getTime();
         }
@@ -131,26 +136,42 @@ class Character extends MovableObject {
 
     playIdleAnimation() {
         let currentTime = new Date().getTime();
-        if(this.lastIdle + 5000 > currentTime) {
+        if (this.lastIdle + 5000 > currentTime) {
             this.playAnimation(this.IMAGES_IDLE);
         } else {
             this.playAnimation(this.IMAGES_LONG_IDLE);
         }
     }
 
-    animateJump(images) {
+    playDeathAnimation() {
+        if (!this.dead) {
+            this.dead = true;
+            this.currentImage = 0;
+        }
+        if (this.currentImage < this.IMAGES_DEAD.length) {
+            this.playAnimation(this.IMAGES_DEAD);
+        }
+    }
+
+    playJumpAnimation(images) {
         const thresholds = [15, 12, 8, 6, 0, -5, -8, -12];
         let index = thresholds.findIndex(threshold => this.speedY >= threshold);
         this.img = this.imageCache[images[index !== -1 ? index : images.length - 1]];
     }
-    
+
     hurt(dmg) {
         this.hp -= dmg;
         this.world.healthBar.updateStatusbar(this.hp / 100);
+        this.lastHurt = new Date().getTime();
+    }
+
+    isHurt() {
+        let currentTime = new Date().getTime();
+        return this.lastHurt + 500 > currentTime
     }
 
     collectBottle(bottle) {
-        if(this.bottles < 10) {
+        if (this.bottles < 10) {
             this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
@@ -158,7 +179,7 @@ class Character extends MovableObject {
     }
 
     collectCoin(coin) {
-        if(this.coins < 10) {
+        if (this.coins < 10) {
             this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
             this.coins += 1;
             this.world.coinBar.updateStatusbar(this.coins / 10);
@@ -166,14 +187,10 @@ class Character extends MovableObject {
     }
 
     throw() {
-        if(this.bottles > 0) {
+        if (this.bottles > 0) {
             this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y))
             this.bottles -= 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
         }
-    }
-
-    playJumpAnimation() {
-        
     }
 }
