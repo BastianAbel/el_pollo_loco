@@ -58,7 +58,7 @@ class Endboss extends MovableObject {
     }
     
     updateAnimation() {
-        this.playAnimation(this.IMAGES_WALKING);
+        this.playAnimation(this.IMAGES_ALERT);
 
     }
 }

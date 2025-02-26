@@ -1,6 +1,12 @@
+@font-face {
+    font-family: 'rye';
+    src: url('fonts/Rye-Regular.ttf');
+}
+
 html, body {
     margin: 0;
     box-sizing: border-box;
+    font-family: 'rye';
 }
 
 body {
@@ -12,6 +18,8 @@ body {
     align-items: center;
     justify-content: center;
     overflow-y: hidden;
+    background-image: url('img/bg-image-canyon.png');
+    background-position: center;
 }
 
 canvas {
