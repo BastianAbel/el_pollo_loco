@@ -35,8 +35,9 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
+    agro = 0;
 
-    constructor() {
+    constructor() {    
         super().loadImg('img/4_enemie_boss_chicken/1_walk/G1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ALERT);
@@ -53,12 +54,17 @@ class Endboss extends MovableObject {
     }
 
     updateMovement() {
-        // this.moveLeft(); 
-        
+
     }
     
     updateAnimation() {
         this.playAnimation(this.IMAGES_ALERT);
 
+    }
+
+    activateAgro(playerX) {
+        if(playerX + 450 >= this.x && this.agro === 0) {
+            this.agro = 1;
+        }
     }
 }

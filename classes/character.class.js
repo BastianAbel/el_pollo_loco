@@ -152,9 +152,7 @@ class Character extends MovableObject {
             this.dead = true;
             this.currentImage = 0;
         }
-        if (this.currentImage < this.IMAGES_DEAD.length) {
-            this.playAnimation(this.IMAGES_DEAD);
-        }
+        this.playAnimationOnce(this.IMAGES_DEAD);
     }
 
     playJumpAnimation(images) {
@@ -165,6 +163,9 @@ class Character extends MovableObject {
 
     hurt(dmg) {
         this.hp -= dmg;
+        if(this.hp < 0) {
+            this.hp = 0
+        };
         this.world.healthBar.updateStatusbar(this.hp / 100);
         this.lastHurt = new Date().getTime();
     }

@@ -78,4 +78,10 @@ class DrawableObject {
         return bounds
     }
 
+    playAnimationOnce(arr) {
+        if (this.currentImage < arr.length) {
+            this.playAnimation(arr);
+        }
+    }
+
 }

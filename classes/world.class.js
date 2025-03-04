@@ -102,7 +102,9 @@ class World {
         this.updateArrayMovement(this.level.clouds);
         this.character.updateMovement();
         this.updateArrayMovement(this.level.enemies);
-        this.updateArrayMovement(this.throwables)
+        this.updateArrayMovement(this.throwables);
+
+        this.updateBossAgro();
     }
 
     updateArrayMovement(array) {
@@ -123,12 +125,12 @@ class World {
         })
     }
 
-    updateMovement() {
-
-    }
-
-    updateAnimation() {
-
+    updateBossAgro() {
+        this.level.enemies.forEach(enemy => {
+            if(enemy instanceof Endboss) {
+                enemy.activateAgro(this.character.x);
+            }
+        });
     }
 
 }
