@@ -45,8 +45,10 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 1000;
-        this.speed = 3;
+        // this.x = 1000;
+        this.x = 500;
+        // this.speed = 3;
+        this.speed = 1;
         this.offset = { left : 20, top : 50, right : 5, bottom : 15 }
         this.width = 250;
         this.height = 300;
@@ -55,17 +57,21 @@ class Endboss extends MovableObject {
     }
 
     updateMovement() {
+        // this.moveTowardsPlayer();
     }
     
     updateAnimation() {
         if(this.agro == 0) {
         }else if(this.agro == 1) {
             this.playAlertAnimation();
-        }else {}
+        }else {
+            this.playAnimation(this.IMAGES_ATTACK);
+        }
 
     }
 
     activateAgro(playerX) {
+        this.playerX = playerX;
         if(playerX + 450 >= this.x && this.agro === 0) {
             this.agro = 1;
         }
@@ -80,6 +86,14 @@ class Endboss extends MovableObject {
         if(this.currentImage >= this.IMAGES_ALERT.length) {
             this.status = "attack";
             this.agro = 2;
+        }
+    }
+
+    moveTowardsPlayer() {
+        if(this.x > this.playerX) {
+            this.moveLeft();
+        }else if(this.x < this.playerX) {
+            this.moveRight();
         }
     }
 }
