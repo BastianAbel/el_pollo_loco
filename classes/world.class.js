@@ -6,7 +6,7 @@ class World {
     keyboard = new Keyboard;
     canvas;
     ctx;
-    level = level_1;
+    level = level_test;
     character = new Character(this);
     camera_x = 0;
     healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10, 1);

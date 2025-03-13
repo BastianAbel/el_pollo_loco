@@ -1,4 +1,4 @@
-const level_1 = new Level(
+const level_test = new Level(
     backgroundObjects = [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -42,12 +42,6 @@ const level_1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        new SmallChicken(),
-        new SmallChicken(),
-        new SmallChicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
         new Endboss()
     ],
     bottles = [
