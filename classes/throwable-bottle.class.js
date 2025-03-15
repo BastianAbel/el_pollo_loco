@@ -15,6 +15,7 @@ class ThrowableBottle extends ThrowableObject {
         this.x = x + 90;
         this.y = y + 140;
         this.world = world;
+        this.offset = { left: 0, top: 0, right: 0, bottom: 0 }
     }
 
     updateMovement() {

@@ -52,4 +52,9 @@ class MovableObject extends DrawableObject {
         return this.y < this.baseY
     }
 
+    isHurt() {
+        let currentTime = new Date().getTime();
+        return this.lastHurt + 500 > currentTime
+    }
+
 }

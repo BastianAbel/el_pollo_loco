@@ -57,6 +57,17 @@ class World {
                     this.character.collectCoin(coin);
                 }
             })
+            this.level.enemies.forEach((enemy => {
+                let endboss;
+                if(enemy instanceof Endboss) {
+                    endboss = enemy;
+                }
+                this.throwables.forEach((bottle => {
+                    if(endboss.isColliding(bottle)) {
+                        endboss.hurt(20);                        
+                    }
+                }))
+            }))
     }
 
     draw() {

@@ -39,7 +39,7 @@ class Endboss extends MovableObject {
     status = "idle";
 
     constructor() {    
-        super().loadImg('img/4_enemie_boss_chicken/1_walk/G1.png');
+        super().loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
@@ -57,11 +57,16 @@ class Endboss extends MovableObject {
     }
 
     updateMovement() {
-        // this.moveTowardsPlayer();
+        if(this.agro == 2) {
+            // this.moveTowardsPlayer();
+        }
     }
     
     updateAnimation() {
-        if(this.agro == 0) {
+        if(this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+        }else if(this.agro == 0) {
+            this.loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
         }else if(this.agro == 1) {
             this.playAlertAnimation();
         }else {
@@ -96,4 +101,14 @@ class Endboss extends MovableObject {
             this.moveRight();
         }
     }
+
+    hurt(dmg) {
+        this.hp -= dmg;
+        if(this.hp < 0) {
+            this.hp = 0
+        };
+        // this.world.healthBar.updateStatusbar(this.hp / 100);
+        this.lastHurt = new Date().getTime();
+    }
+
 }

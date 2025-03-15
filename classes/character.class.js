@@ -58,7 +58,7 @@ class Character extends MovableObject {
     ];
     world;
     coins = 0;
-    bottles = 0;
+    bottles = 10;
     baseY = 128;
     idle = false;
     lastHurt = 0;
@@ -168,11 +168,6 @@ class Character extends MovableObject {
         };
         this.world.healthBar.updateStatusbar(this.hp / 100);
         this.lastHurt = new Date().getTime();
-    }
-
-    isHurt() {
-        let currentTime = new Date().getTime();
-        return this.lastHurt + 500 > currentTime
     }
 
     collectBottle(bottle) {
