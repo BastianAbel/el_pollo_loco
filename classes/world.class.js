@@ -64,7 +64,8 @@ class World {
                 }
                 this.throwables.forEach((bottle => {
                     if(endboss.isColliding(bottle)) {
-                        endboss.hurt(20);                        
+                        endboss.hurt(20);      
+                        bottle.delete();                  
                     }
                 }))
             }))
