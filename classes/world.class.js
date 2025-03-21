@@ -12,6 +12,7 @@ class World {
     healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10, 1);
     bottleBar = new Statusbar('img/7_statusbars/3_icons/icon_salsa_bottle.png', 54, 0);
     coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94, 0);
+    bossBar;
     throwables = [];
 
     constructor(canvas) {
@@ -62,6 +63,9 @@ class World {
                 if(enemy instanceof Endboss) {
                     endboss = enemy;
                 }
+                if(endboss.firstEncounter()) {
+                    endboss.setHealthbar();
+                }
                 this.throwables.forEach((bottle => {
                     if(endboss.isColliding(bottle)) {
                         endboss.hurt(20);      
@@ -86,6 +90,9 @@ class World {
         this.healthBar.drawStatusBar(this.ctx);
         this.bottleBar.drawStatusBar(this.ctx);
         this.coinBar.drawStatusBar(this.ctx);
+        if(this.bossBar) {
+            this.bossBar.drawStatusBar(this.ctx);
+        }
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
@@ -140,7 +147,10 @@ class World {
     updateBossAgro() {
         this.level.enemies.forEach(enemy => {
             if(enemy instanceof Endboss) {
-                enemy.activateAgro(this.character.x);
+                if(!enemy.world) {
+                    enemy.world = this;
+                }
+                enemy.activateAgro();
             }
         });
     }

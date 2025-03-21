@@ -37,6 +37,7 @@ class Endboss extends MovableObject {
     ];
     agro = 0;
     status = "idle";
+    bossBar;
 
     constructor() {    
         super().loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
@@ -75,8 +76,8 @@ class Endboss extends MovableObject {
 
     }
 
-    activateAgro(playerX) {
-        this.playerX = playerX;
+    activateAgro() {
+        let playerX = this.world.character.x;
         if(playerX + 450 >= this.x && this.agro === 0) {
             this.agro = 1;
         }
@@ -104,11 +105,20 @@ class Endboss extends MovableObject {
 
     hurt(dmg) {
         this.hp -= dmg;
-        if(this.hp < 0) {
+        this.world.bossBar.updateStatusbar(this.hp / 100);
+        if(this.hp < 0 || this.hp === 0) {
             this.hp = 0
+            this.world.bossBar = false;
         };
-        // this.world.healthBar.updateStatusbar(this.hp / 100);
         this.lastHurt = new Date().getTime();
+    }
+
+    firstEncounter() {
+        return !this.world.bossBar && this.world.character.x + 450 >= this.x && this.hp > 0
+    }
+
+    setHealthbar() {
+        this.world.bossBar = new Bossbar("img/7_statusbars/3_icons/icon_health_endboss.png", 10, 1);
     }
 
 }

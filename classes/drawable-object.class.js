@@ -15,9 +15,12 @@ class DrawableObject {
     }
 
     drawStatusBar(ctx) {
+        ctx.save();
+        this.applyTransformations(ctx);
         ctx.drawImage(this.background, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.bar, this.x, this.y, this.barWidth, this.height);
         ctx.drawImage(this.icon, this.iconX, this.iconY, this.iconSize, this.iconSize);
+        ctx.restore();
     }
 
     drawFrame(ctx) {
