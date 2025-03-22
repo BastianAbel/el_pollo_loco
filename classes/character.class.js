@@ -147,14 +147,6 @@ class Character extends MovableObject {
         }
     }
 
-    playDeathAnimation() {
-        if (!this.dead) {
-            this.dead = true;
-            this.currentImage = 0;
-        }
-        this.playAnimationOnce(this.IMAGES_DEAD);
-    }
-
     playJumpAnimation(images) {
         const thresholds = [15, 12, 8, 6, 0, -5, -8, -12];
         let index = thresholds.findIndex(threshold => this.speedY >= threshold);

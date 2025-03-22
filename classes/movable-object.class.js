@@ -36,9 +36,7 @@ class MovableObject extends DrawableObject {
     }
     
     isDead() {
-        if(this.hp <= 0) {
-            return true
-        }
+        return this.hp <= 0
     }
 
     applyGravity() {
@@ -55,6 +53,14 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let currentTime = new Date().getTime();
         return this.lastHurt + 500 > currentTime
+    }
+
+    playDeathAnimation() {
+        if (!this.dead) {
+            this.dead = true;
+            this.currentImage = 0;
+        }
+        this.playAnimationOnce(this.IMAGES_DEAD);
     }
 
 }
