@@ -46,10 +46,8 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
-        // this.x = 1000;
-        this.x = 500;
-        // this.speed = 3;
-        this.speed = 1;
+        this.x = 1000;
+        this.speed = 2;
         this.offset = { left : 20, top : 50, right : 5, bottom : 15 }
         this.width = 250;
         this.height = 300;
@@ -60,7 +58,7 @@ class Endboss extends MovableObject {
     updateMovement() {
         if(!this.isDead()) {
             if(this.agro == 2) {
-                // this.moveTowardsPlayer();
+                this.moveTowardsPlayer();
             }
         }
     }
@@ -74,10 +72,13 @@ class Endboss extends MovableObject {
             this.loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
         }else if(this.agro == 1) {
             this.playAlertAnimation();
-        }else {
-            this.playAnimation(this.IMAGES_ATTACK);
-        }
-
+        }else if(this.agro == 2) {
+            if(this.isColliding(this.world.character)) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }else {}
     }
 
     activateAgro() {
@@ -100,10 +101,12 @@ class Endboss extends MovableObject {
     }
 
     moveTowardsPlayer() {
-        if(this.x > this.playerX) {
+        if(this.x > this.world.character.x) {
             this.moveLeft();
-        }else if(this.x < this.playerX) {
+            this.flipImage = false;
+        }else if(this.x < this.world.character.x) {
             this.moveRight();
+            this.flipImage = true;
         }
     }
 
@@ -118,7 +121,7 @@ class Endboss extends MovableObject {
     }
 
     firstEncounter() {
-        return !this.world.bossBar && this.world.character.x + 450 >= this.x && this.hp > 0
+        return !this.world.bossBar && this.world.character.x + 600 >= this.x && this.hp > 0
     }
 
     setHealthbar() {
