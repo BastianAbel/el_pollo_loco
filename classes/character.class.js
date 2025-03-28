@@ -113,6 +113,12 @@ class Character extends MovableObject {
         }
     }
 
+    jumpsOn(obj) {
+        const char = this.getBounds();
+        const object = obj.getBounds();
+        return object.top + 50 > char.bottom && this.speedY < 0
+    }
+
     updateAnimation() {
         if (this.isDead()) {
             this.playDeathAnimation();

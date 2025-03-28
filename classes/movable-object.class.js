@@ -63,4 +63,12 @@ class MovableObject extends DrawableObject {
         this.playAnimationOnce(this.IMAGES_DEAD);
     }
 
+    hurt(dmg) {
+        this.hp -= dmg;
+        if(this.hp < 0) {
+            this.hp = 0
+        };
+        this.lastHurt = new Date().getTime();
+    }
+
 }
