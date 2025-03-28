@@ -43,7 +43,7 @@ class World {
     checkCollisions() {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
-                    if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss)) {
+                    if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss) && !enemy.isDead()) {
                         enemy.hurt(enemy.hp);
                         this.character.speedY = 15;
                     }else if(!this.character.isDead() && !this.character.isHurt() && !enemy.isDead()) {
