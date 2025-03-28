@@ -6,7 +6,7 @@ class World {
     keyboard = new Keyboard;
     canvas;
     ctx;
-    level = level_test;
+    level = level_1;
     character = new Character(this);
     camera_x = 0;
     healthBar = new Statusbar('img/7_statusbars/3_icons/icon_health.png', 10, 1);
@@ -62,16 +62,16 @@ class World {
                 let endboss;
                 if(enemy instanceof Endboss) {
                     endboss = enemy;
-                }
-                if(endboss.firstEncounter()) {
-                    endboss.setHealthbar();
-                }
-                this.throwables.forEach((bottle => {
-                    if(endboss.isColliding(bottle) && !endboss.isDead()) {
-                        endboss.hurt(20);      
-                        bottle.delete();                  
+                    if(endboss.firstEncounter()) {
+                        endboss.setHealthbar();
                     }
-                }))
+                    this.throwables.forEach((bottle => {
+                        if(endboss.isColliding(bottle) && !endboss.isDead()) {
+                            endboss.hurt(20);      
+                            bottle.delete();                  
+                        }
+                    }))
+                }
             }))
     }
 
@@ -120,9 +120,10 @@ class World {
     updateMovements() {
         this.updateArrayMovement(this.level.clouds);
         this.character.updateMovement();
-        this.updateArrayMovement(this.level.enemies);
-        this.updateArrayMovement(this.throwables);
-
+        if(this.character.firstMove) {
+            this.updateArrayMovement(this.level.enemies);
+            this.updateArrayMovement(this.throwables);
+        }
         this.updateBossAgro();
     }
 

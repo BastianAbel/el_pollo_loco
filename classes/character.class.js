@@ -58,13 +58,14 @@ class Character extends MovableObject {
     ];
     world;
     coins = 0;
-    bottles = 10;
+    bottles = 0;
     baseY = 128;
     idle = false;
     lastHurt = 0;
     dead = false;
     throwing = false;
     thowingInterval;
+    firstMove;
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -95,15 +96,18 @@ class Character extends MovableObject {
             if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.flipImage = false;
+                this.firstMove = true;
             }
 
             if (this.world.keyboard.left && this.x > 0) {
                 this.moveLeft();
                 this.flipImage = true;
+                this.firstMove = true;
             }
 
             if (this.world.keyboard.jump) {
                 this.jump();
+                this.firstMove = true;
             }
             this.world.camera_x = -this.x + 100;
         }
@@ -164,7 +168,8 @@ class Character extends MovableObject {
 
     collectBottle(bottle) {
         if (this.bottles < 10) {
-            this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
+            // this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
+            bottle.relocate(this.world.level.level_end_x);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
         }

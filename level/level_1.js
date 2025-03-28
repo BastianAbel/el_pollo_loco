@@ -1,4 +1,5 @@
 const level_1 = new Level(
+    level_end_x = 4000,
     backgroundObjects = [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -42,23 +43,36 @@ const level_1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        new SmallChicken(),
-        new SmallChicken(),
-        new SmallChicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
         new Endboss()
     ],
     bottles = [
+        new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
         new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
         new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
-        new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png')
+        new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+        new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
     ],
     coins = [
-        new CollectableCoin(),
-        new CollectableCoin(),
-        new CollectableCoin()
+        new CollectableCoin(800, 150),
+        new CollectableCoin(1300, 150),
+        new CollectableCoin(1900 - 120, 75 + 125),
+        new CollectableCoin(1900 - 100, 75 + 75),
+        new CollectableCoin(1900 - 60, 75 + 25),
+        new CollectableCoin(1900, 75),
+        new CollectableCoin(1900 + 60, 75 + 25),
+        new CollectableCoin(1900 + 100, 75 + 75),
+        new CollectableCoin(1900 + 120, 75 + 125),
+        new CollectableCoin(2400, 150)
     ]
 
 );

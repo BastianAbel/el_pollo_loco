@@ -9,10 +9,10 @@ class Chicken extends MovableObject {
     ];
     damage = 5;
 
-    constructor() {
+    constructor(levelEnd) {
         super().loadImg('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.x = Math.random() * 520 + 150;
+        this.x = Math.random() * (levelEnd - 500) + 150;
         this.speed = this.baseSpeed * (Math.random() * 0.5) + 0.3;
         this.offset = { left : 5, top : 10, right : 0, bottom : 10 };
         this.y = this.baseY;   

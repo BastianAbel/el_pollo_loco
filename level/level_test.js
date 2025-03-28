@@ -1,4 +1,5 @@
 const level_test = new Level(
+    level_end_x = 5000,
     backgroundObjects = [
         new BackgroundObject('img/5_background/layers/air.png', -719),
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719),
@@ -42,7 +43,7 @@ const level_test = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        new Endboss()
+        // new Endboss()
     ],
     bottles = [
         new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
@@ -50,7 +51,13 @@ const level_test = new Level(
         new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png')
     ],
     coins = [
-        new CollectableCoin(),
+        new CollectableCoin(180, 200),
+        new CollectableCoin(200, 150),
+        new CollectableCoin(240, 100),
+        new CollectableCoin(300, 75),
+        new CollectableCoin(360, 100),
+        new CollectableCoin(400, 150),
+        new CollectableCoin(420, 200),
         new CollectableCoin(),
         new CollectableCoin()
     ]
