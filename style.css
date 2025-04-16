@@ -22,10 +22,22 @@ body {
     background-position: center;
 }
 
-canvas {
+h1 {
+    color: white;
+}
+
+#container {
+    position: relative;
+    height: 480px;
+}
+
+#canvas {
     background-color: white;
 }
 
-h1 {
-    color: white;
+#controls {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
