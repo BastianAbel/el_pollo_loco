@@ -50,6 +50,16 @@ class World {
                         this.character.hurt(enemy.damage);
                     }
                 }
+                this.throwables.forEach((bottle => {
+                    if(enemy.isColliding(bottle) && !enemy.isDead()) {
+                        if(enemy instanceof Endboss) {
+                            enemy.hurt(20);      
+                        }else {
+                            enemy.hp = 0;
+                        }
+                        bottle.delete();                  
+                    }
+                }))
             })
             this.level.bottles.forEach((bottle) => {
                 if(this.character.isColliding(bottle)) {
@@ -68,12 +78,6 @@ class World {
                     if(endboss.firstEncounter()) {
                         endboss.setHealthbar();
                     }
-                    this.throwables.forEach((bottle => {
-                        if(endboss.isColliding(bottle) && !endboss.isDead()) {
-                            endboss.hurt(20);      
-                            bottle.delete();                  
-                        }
-                    }))
                 }
             }))
     }
