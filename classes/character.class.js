@@ -210,7 +210,7 @@ class Character extends MovableObject {
     }
 
     throw() {
-        this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y))
+        this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y, this.flipImage))
         this.bottles -= 1;
         this.world.bottleBar.updateStatusbar(this.bottles / 10);
     }

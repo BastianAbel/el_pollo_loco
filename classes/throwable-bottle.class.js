@@ -7,6 +7,7 @@ class ThrowableBottle extends ThrowableObject {
     baseY = 500;
     world;
     int;
+    direction;
     IMAGES_ROTATION = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -14,7 +15,7 @@ class ThrowableBottle extends ThrowableObject {
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ]
 
-    constructor(world, x, y) {
+    constructor(world, x, y, direction) {
         super().loadImg('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_ROTATION);
 
@@ -23,12 +24,15 @@ class ThrowableBottle extends ThrowableObject {
         this.y = y + 140;
         this.world = world;
         this.offset = { left: 0, top: 0, right: 0, bottom: 0 }
+        this.direction = direction;
     }
 
     updateMovement() {
         this.applyGravity();
-        if(this.isAboveGround()) {
-            this.moveRight()
+        if(this.isAboveGround() && !this.direction) {
+            this.moveRight();
+        } else if(this.isAboveGround() && this.direction){
+            this.moveLeft();
         } else {
             this.delete();
         }
