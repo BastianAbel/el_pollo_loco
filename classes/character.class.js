@@ -194,9 +194,11 @@ class Character extends MovableObject {
             this.throwing = true;
             this.throw();
             this.thowingInterval = setInterval(() => {
-                this.throw();
                 if (this.bottles <= 0) {
                     this.stopThrowing();
+                }
+                if(this.bottles > 0) {
+                    this.throw();
                 }
             }, 250)
         }

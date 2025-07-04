@@ -31,10 +31,12 @@
 </head>
 <body onload="init()">
     <h1>El Pollo Loco</h1>
-    <!-- <button onclick="canvas.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button> -->
     <div id="container">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <div id="controls">
+        <div id="overlay">
+            <div class="topControls">
+                <button onclick="canvas.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
+            </div>
         </div>
     </div>
 </body>

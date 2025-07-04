@@ -35,11 +35,15 @@ h1 {
     background-color: white;
 }
 
-#controls {
+#overlay {
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
+}
+
+.topControls {
+    width: 100%;
 }
 
 button {
