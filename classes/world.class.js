@@ -42,6 +42,9 @@ class World {
 
     checkCollisions() {
             this.level.enemies.forEach((enemy) => {
+                if(enemy.isDead() && enemy.corpseRotting()) {
+                    this.level.enemies = this.level.enemies.filter(e => e !== enemy)
+                }
                 if(this.character.isColliding(enemy)) {
                     if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss) && !enemy.isDead()) {
                         enemy.hurt(enemy.hp);
@@ -55,7 +58,7 @@ class World {
                         if(enemy instanceof Endboss) {
                             enemy.hurt(20);      
                         }else {
-                            enemy.hp = 0;
+                            enemy.hurt(enemy.hp);
                         }
                         bottle.delete();                  
                     }

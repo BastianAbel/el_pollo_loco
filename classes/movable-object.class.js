@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     imageCache = {};
     offset = {};
     hp = 100;
+    deathTime;
 
     constructor() {
         super()
@@ -36,7 +37,19 @@ class MovableObject extends DrawableObject {
     }
     
     isDead() {
+        if(this.hp <= 0 && !this.deathTime) {
+            this.setDeathTime();
+        }
         return this.hp <= 0
+    }
+
+    setDeathTime() {
+        this.deathTime = new Date().getTime();
+    }
+
+    corpseRotting() {
+        let currentTime = new Date().getTime();
+        return this.deathTime + 5000 < currentTime
     }
 
     applyGravity() {
