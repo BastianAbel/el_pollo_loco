@@ -31,19 +31,13 @@
 </head>
 <body onload="init()">
     <h1>El Pollo Loco</h1>
-    <div id="container">
-        <canvas id="canvas" width="720" height="480">
+    <section id="container">
+        <canvas id="canvas" width="720" height="480"></canvas>
         <div id="overlay">
             <div class="topControls">
-                <button onclick="canvas.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
+                <button tabindex="-1" onclick="container.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
             </div>
         </div>
-        </canvas>
-        <!-- <div id="overlay">
-            <div class="topControls">
-                <button onclick="canvas.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
-            </div>
-        </div> -->
-    </div>
+    </section>
 </body>
 </html>
