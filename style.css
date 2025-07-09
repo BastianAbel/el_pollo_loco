@@ -50,14 +50,12 @@ canvas {
 }
 
 .topControls {
-    width: 100%;
+    width: calc(100% -8px);
+    padding: 4px;
     display: flex;
     justify-content: end;
     align-items: center;
-}
-
-.topControls button {
-    padding: 4px;
+    gap: 8px;
 }
 
 .topControls button img {
@@ -65,9 +63,25 @@ canvas {
     width: 32px;
 }
 
-button {
+.button {
     background-color: rgba(255, 255, 255, 0);
     border: none;
     cursor: pointer;
     padding: 0;
+    display: flex;
+}
+
+#help {
+    height: 24px;
+    width: 24px;
+}
+
+#volume {
+    height: 32px;
+    width: 32px;
+}
+
+#fullscreen {
+    height: 32px;
+    width: 32px;
 }

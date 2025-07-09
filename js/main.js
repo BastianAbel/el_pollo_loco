@@ -6,3 +6,14 @@ function toggleFullscreen() {
         document.exitFullscreen();
     }
 }
+
+function toggleVolume() {
+    volumeButton = document.getElementById('volume');
+    if(volume) {
+        volume = false;
+        volumeButton.src = "img/controls/volume-off.svg";
+    } else{
+        volume = true;
+        volumeButton.src = "img/controls/volume-on.svg";
+    }
+}
