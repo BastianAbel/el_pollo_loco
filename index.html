@@ -6,6 +6,7 @@
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="/img/fav-icon.png" type="image/x-icon">
+    <script src="js/main.js"></script>
     <script src="/classes/drawable-object.class.js"></script>
     <script src="/classes/statusbar.class.js"></script>
     <script src="/classes/bossbar.class.js"></script>
@@ -35,7 +36,7 @@
         <canvas id="canvas" width="720" height="480"></canvas>
         <div id="overlay">
             <div class="topControls">
-                <button tabindex="-1" onclick="container.requestFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
+                <button tabindex="-1" onclick="toggleFullscreen()"><img src="img/controls/fullscreen-icon.svg" alt="" height="50" width="50"></button>
             </div>
         </div>
     </section>
