@@ -34,10 +34,15 @@
     <h1>El Pollo Loco</h1>
     <section id="container">
         <canvas id="canvas" width="720" height="480"></canvas>
-        <div id="overlay">
-            <div class="topControls">
+        <div id="help-overlay" class="d-none">
+            <span>move</span>
+            <span>jump</span>
+            <span>throw</span>
+        </div>
+        <div id="control-overlay">
+            <div class="top-controls">
                 <div class="button">
-                    <img id="help" src="img/controls/help.svg" alt="">
+                    <img id="help" onclick="toggleOverlay('help-overlay')" src="img/controls/help.svg" alt="">
                 </div>
                 <div class="button" onclick="toggleVolume()">
                     <img src="img/controls/volume-on.svg" alt="" id="volume">

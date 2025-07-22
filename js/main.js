@@ -37,3 +37,8 @@ function toggleVolume() {
         volumeButton.src = "img/controls/volume-on.svg";
     }
 }
+
+function toggleOverlay(id) {
+    element = document.getElementById(id);
+    element.classList.toggle('d-none');
+}

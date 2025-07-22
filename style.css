@@ -42,14 +42,14 @@ canvas {
     }
 }
 
-#overlay {
+#control-overlay {
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
 }
 
-.topControls {
+.top-controls {
     width: calc(100% -8px);
     padding: 4px;
     display: flex;
@@ -58,7 +58,7 @@ canvas {
     gap: 8px;
 }
 
-.topControls button img {
+.top-controls button img {
     height: 32px;
     width: 32px;
 }
@@ -84,4 +84,16 @@ canvas {
 #fullscreen {
     height: 32px;
     width: 32px;
+}
+
+#help-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.d-none {
+    display: none;
 }
