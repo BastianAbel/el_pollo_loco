@@ -92,8 +92,46 @@ canvas {
     width: 100%;
     position: absolute;
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.control-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 60%;
+    width: 20%;
+}
+
+.control-card span {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.control-card img {
+    flex: 1;
+    max-height: 80%;
+    max-width: 100%;
+}
+
+.small-img {
+    flex: none !important;
+    height: 50%;
 }
 
 .d-none {
-    display: none;
+    display: none !important;
+}
+
+.image-flip {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
