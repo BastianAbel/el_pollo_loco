@@ -1,6 +1,5 @@
 let canvas;
 let world;
-let volume = true;
 
 
 function init() {

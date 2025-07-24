@@ -1,3 +1,5 @@
+let muted = false;
+
 let audioInfList = {
     music : {
         'src' : 'sounds/guitar-mexican-vibes-230195.mp3',
@@ -25,6 +27,25 @@ function loadAllSounds() {
         audio.preload = 'auto';
         audio.autoplay = audioInfList[keys[i]]['autoplay'];
         audio.loop = audioInfList[keys[i]]['loop'];
+    }
+}
+
+function toggleVolume() {
+    volumeButton = document.getElementById('volume');
+    if(!muted) {
+        changeMuteStatusTo(true)
+        volumeButton.src = "img/controls/volume-off.svg";
+    } else{
+        changeMuteStatusTo(false)
+        volumeButton.src = "img/controls/volume-on.svg";
+    }
+}
+
+function changeMuteStatusTo(muteStatus) {
+    muted = muteStatus;
+    for(x in loadedAudios) {
+        audio = loadedAudios[x];
+        audio.muted = muteStatus;
     }
 }
 
