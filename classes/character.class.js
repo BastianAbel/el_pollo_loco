@@ -149,12 +149,16 @@ class Character extends MovableObject {
     }
 
     playIdleAnimation() {
-        let currentTime = new Date().getTime();
-        if (this.lastIdle + 5000 > currentTime) {
+        if (!this.longIdle()) {
             this.playAnimation(this.IMAGES_IDLE);
         } else {
             this.playAnimation(this.IMAGES_LONG_IDLE);
         }
+    }
+
+    longIdle() {
+        let currentTime = new Date().getTime();
+        return this.lastIdle + 5000 < currentTime
     }
 
     playJumpAnimation(images) {
@@ -174,7 +178,6 @@ class Character extends MovableObject {
 
     collectBottle(bottle) {
         if (this.bottles < 10) {
-            // this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
             bottle.relocate(this.world.level.level_end_x);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);

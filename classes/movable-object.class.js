@@ -84,4 +84,8 @@ class MovableObject extends DrawableObject {
         this.lastHurt = new Date().getTime();
     }
 
+    playAudio(audioref) {
+    const audioClone = loadedAudios[audioref].cloneNode(true);
+    audioClone.play();
+    }
 }

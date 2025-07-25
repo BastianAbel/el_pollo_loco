@@ -12,6 +12,36 @@ let audioInfList = {
         'volume' : 1,
         'autoplay' : false,
         'loop' : false
+    },
+    angryChicken : {
+        'src' : 'sounds/angry-chicken-imitation-89241.mp3',
+        'volume' : 1,
+        'autoplay' : false,
+        'loop' : false
+    },
+    chickChirp : {
+        'src' : 'sounds/chick-chirping-75543.mp3',
+        'volume' : 1,
+        'autoplay' : false,
+        'loop' : false
+    },
+    chickenCluking : {
+        'src' : 'sounds/chicken-cluking-type-3-293320.mp3',
+        'volume' : 1,
+        'autoplay' : false,
+        'loop' : false
+    },
+    chickenHurt : {
+        'src' : 'sounds/chicken-squawk-72188.mp3',
+        'volume' : 1,
+        'autoplay' : false,
+        'loop' : false
+    },
+    snoring : {
+        'src' : 'sounds/snoring.mp3',
+        'volume' : 1,
+        'autoplay' : false,
+        'loop' : true
     }
 };
 
@@ -56,10 +86,3 @@ function changeMuteStatusTo(muteStatus) {
 
 
 loadAllSounds()
-
-
-
-function playAudio(audioref) {
-    const audioClone = loadedAudios[audioref].cloneNode(true);
-    audioClone.play();
-}
