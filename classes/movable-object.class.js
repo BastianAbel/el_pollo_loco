@@ -84,8 +84,30 @@ class MovableObject extends DrawableObject {
         this.lastHurt = new Date().getTime();
     }
 
-    playAudio(audioref) {
-    const audioClone = loadedAudios[audioref].cloneNode(true);
+    playSoundClone(audioref) {
+    const original = loadedAudios[audioref];
+    const audioClone = original.cloneNode(true);
+    audioClone.volume = original.volume;
+    audioClone.muted = muted;
     audioClone.play();
+    }
+
+    playSoundClone(audioref) {
+        const original = loadedAudios[audioref];
+        const audioClone = new Audio(original.src);
+        audioClone.volume = original.volume;
+        audioClone.muted = original.muted;
+        audioClone.play()
+    }
+  
+
+    playSound(audioref) {
+    const audio = loadedAudios[audioref];
+    audio.play();
+    }
+
+    pauseSound(audioref) {
+    const audio = loadedAudios[audioref];
+    audio.pause();
     }
 }

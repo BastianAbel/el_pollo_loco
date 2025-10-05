@@ -97,9 +97,7 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.flipImage = false;
                 this.firstMove = true;
-            }
-
-            if (this.world.keyboard.left && this.x > 0) {
+            }else if (this.world.keyboard.left && this.x > 0) {
                 this.moveLeft();
                 this.flipImage = true;
                 this.firstMove = true;
@@ -131,9 +129,11 @@ class Character extends MovableObject {
         } else if (this.world.keyboard.right || this.world.keyboard.left) {
             this.playAnimation(this.IMAGES_WALKING);
             this.resetIdle();
+            this.updateStepSound();
         } else {
             this.setIdle();
             this.playIdleAnimation();
+            this.updateIdleSound();
         }
     }
 
@@ -142,6 +142,25 @@ class Character extends MovableObject {
             this.idle = true;
             this.lastIdle = new Date().getTime();
         }
+    }
+
+    updateIdleSound() {
+        if(!this.idleSound && this.longIdle() && this.idle) {
+            this.idleSound = true;
+            this.playSound('snoring');
+        }else if(!this.idle) {
+            this.idleSound = false;
+            this.pauseSound('snoring');
+        }
+    }
+
+    updateStepSound() {
+        let i = this.currentImage % this.IMAGES_WALKING.length;
+            if(i === 2 || i === 5 && this.lastPlayedStepImg != i) {
+                this.playSoundClone('sandStep');
+                // this.playSound('sandStep');
+                this.lastPlayedStepImg = i;
+            }
     }
 
     resetIdle() {

@@ -4,12 +4,12 @@ let audioInfList = {
     music : {
         'src' : 'sounds/guitar-mexican-vibes-230195.mp3',
         'volume' : 0.1,
-        'autoplay' : true,
+        'autoplay' : false,
         'loop' : true
     },
     sandStep : {
         'src' : 'sounds/sand-step.mp3',
-        'volume' : 1,
+        'volume' : 0.1,
         'autoplay' : false,
         'loop' : false
     },
@@ -39,7 +39,7 @@ let audioInfList = {
     },
     snoring : {
         'src' : 'sounds/snoring.mp3',
-        'volume' : 1,
+        'volume' : 0.3,
         'autoplay' : false,
         'loop' : true
     }
