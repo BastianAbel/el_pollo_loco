@@ -119,6 +119,7 @@ class Character extends MovableObject {
 
     updateAnimation() {
         if (this.isDead()) {
+            this.playDeathSound();
             this.playDeathAnimation();
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
@@ -129,12 +130,21 @@ class Character extends MovableObject {
         } else if (this.world.keyboard.right || this.world.keyboard.left) {
             this.playAnimation(this.IMAGES_WALKING);
             this.resetIdle();
-            this.updateStepSound();
+            let i = this.currentImage % this.IMAGES_WALKING.length;
+                // if(i === 2 || i === 5 && this.lastPlayedStepImg != i) {
+                //     this.playSoundClone('sandStep');
+                //     this.lastPlayedStepImg = i;
+                // }
         } else {
             this.setIdle();
             this.playIdleAnimation();
-            this.updateIdleSound();
         }
+    }
+
+    updateSound() {
+        this.updateIdleSound();
+        this.updateStepSound();
+        this.updateJumpSound();
     }
 
     setIdle() {
@@ -155,12 +165,42 @@ class Character extends MovableObject {
     }
 
     updateStepSound() {
-        let i = this.currentImage % this.IMAGES_WALKING.length;
-            if(i === 2 || i === 5 && this.lastPlayedStepImg != i) {
-                this.playSoundClone('sandStep');
-                // this.playSound('sandStep');
-                this.lastPlayedStepImg = i;
-            }
+        if (this.world.keyboard.right || this.world.keyboard.left) {
+            let i = this.currentImage % this.IMAGES_WALKING.length;
+                if((i === 2 || i === 5) && this.lastPlayedStepImg != i) {
+                    console.log('currentImage = ', i, '. LastPlayedImage = ', this.lastPlayedStepImg)
+                    this.lastPlayedStepImg = i;
+                    this.playSoundClone('sandStep');
+                }
+        }
+    }
+
+    updateJumpSound() {
+        if (this.world.keyboard.jump && !this.isAboveGround()) {
+            this.playSoundClone('jump');
+        }
+    }
+
+    playDeathSound() {
+        if(!this.dead) {
+            this.playSoundClone('death');
+        }
+    }
+
+    playHurtSound() {
+        this.playSoundClone('hurt');
+    }
+
+    playBottlePickupSound() {
+        this.playSoundClone('bottlePickup');
+    }
+
+    playCoinPickupSound() {
+        this.playSoundClone('coinPickup');
+    }
+
+    playThrowSound() {
+        this.playSoundClone('throw');
     }
 
     resetIdle() {
@@ -193,6 +233,7 @@ class Character extends MovableObject {
         };
         this.world.healthBar.updateStatusbar(this.hp / 100);
         this.lastHurt = new Date().getTime();
+        this.playHurtSound();
     }
 
     collectBottle(bottle) {
@@ -200,6 +241,7 @@ class Character extends MovableObject {
             bottle.relocate(this.world.level.level_end_x);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
+            this.playBottlePickupSound();
         }
     }
 
@@ -208,6 +250,7 @@ class Character extends MovableObject {
             this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
             this.coins += 1;
             this.world.coinBar.updateStatusbar(this.coins / 10);
+            this.playCoinPickupSound();
         }
     }
 
@@ -237,5 +280,6 @@ class Character extends MovableObject {
         this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y, this.flipImage))
         this.bottles -= 1;
         this.world.bottleBar.updateStatusbar(this.bottles / 10);
+        this.playThrowSound();
     }
 }

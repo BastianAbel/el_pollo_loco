@@ -53,7 +53,7 @@ const level_1 = new Level(
         // new Chicken(this.level_end_x),
         // new Chicken(this.level_end_x),
         // new Chicken(this.level_end_x),
-        // new Endboss()
+        new Endboss()
     ],
     bottles = [
         new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),

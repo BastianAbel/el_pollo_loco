@@ -23,10 +23,9 @@ class World {
     }
 
     startGame() {
-        this.draw()
-        this.animationInterval = setInterval(() => {this.updateAnimations()}, 1000 / 10)
-        this.movementInterval = setInterval(() => {this.updateMovements()}, 1000 / 60)
-        this.collisionInterval = setInterval(() => {this.checkCollisions()}, 1000 / 30)
+        this.draw();
+        this.animationInterval = setInterval(() => {this.updateAnimations()}, 1000 / 10);
+        this.movementInterval = setInterval(() => {this.updateMovements(), this.checkCollisions(), this.updateSounds()}, 1000 / 60)
     }
 
     stopGame() {
@@ -142,13 +141,17 @@ class World {
             e.updateMovement();
         })
     }
-
+    
     updateAnimations() {
         this.character.updateAnimation();
         this.updateArrayAnimation(this.level.enemies);
         this.updateArrayAnimation(this.throwables);
     }
-
+    
+        updateSounds() {
+            this.character.updateSound();
+        }
+    
     updateArrayAnimation(array) {
         array.forEach(e => {
             e.updateAnimation();

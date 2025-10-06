@@ -42,6 +42,42 @@ let audioInfList = {
         'volume' : 0.3,
         'autoplay' : false,
         'loop' : true
+    },
+    throw : {
+        'src' : 'sounds/throw.mp3',
+        'volume' : 0.3,
+        'autoplay' : false,
+        'loop' : true
+    },
+    coinPickup : {
+        'src' : 'sounds/coin-pickup.mp3',
+        'volume' : 0.5,
+        'autoplay' : false,
+        'loop' : true
+    },
+    bottlePickup : {
+        'src' : 'sounds/bottle-pickup.mp3',
+        'volume' : 0.5,
+        'autoplay' : false,
+        'loop' : true
+    },
+    hurt : {
+        'src' : 'sounds/hurt.mp3',
+        'volume' : 0.6,
+        'autoplay' : false,
+        'loop' : true
+    },
+    death : {
+        'src' : 'sounds/death.mp3',
+        'volume' : 0.6,
+        'autoplay' : false,
+        'loop' : true
+    },
+    jump : {
+        'src' : 'sounds/jump.mp3',
+        'volume' : 0.6,
+        'autoplay' : false,
+        'loop' : true
     }
 };
 
