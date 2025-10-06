@@ -131,10 +131,6 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
             this.resetIdle();
             let i = this.currentImage % this.IMAGES_WALKING.length;
-                // if(i === 2 || i === 5 && this.lastPlayedStepImg != i) {
-                //     this.playSoundClone('sandStep');
-                //     this.lastPlayedStepImg = i;
-                // }
         } else {
             this.setIdle();
             this.playIdleAnimation();
