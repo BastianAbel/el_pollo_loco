@@ -48,7 +48,7 @@ class World {
                     if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss) && !enemy.isDead()) {
                         enemy.hurt(enemy.hp);
                         this.character.speedY = 15;
-                    }else if(!this.character.isDead() && !this.character.isHurt() && !enemy.isDead()) {
+                    }else if(!this.character.isDead() && !this.character.isHurt() && !enemy.hp == 0) {
                         this.character.hurt(enemy.damage);
                     }
                 }
@@ -148,13 +148,20 @@ class World {
         this.updateArrayAnimation(this.throwables);
     }
     
-        updateSounds() {
-            this.character.updateSound();
-        }
+    updateSounds() {
+        this.character.updateSound();
+        this.updateArraySound(this.level.enemies)
+    }
     
     updateArrayAnimation(array) {
         array.forEach(e => {
             e.updateAnimation();
+        })
+    }
+
+    updateArraySound(array) {
+        array.forEach(e => {
+            e.updateSound();
         })
     }
 

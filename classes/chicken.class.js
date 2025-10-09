@@ -11,6 +11,7 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
     damage = 5;
+    standartSound = 'chickenClucking';
 
     constructor(levelEnd) {
         super().loadImg('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -34,6 +35,17 @@ class Chicken extends MovableObject {
         } else {
             this.playAnimation(this.IMAGES_WALKING);
         }
+    }
+
+    updateSound() {
+        const currentTime = new Date().getTime();
+        if((currentTime % 5000) <= 40) {
+            const randomNumber = Math.random() * 100;
+            if(randomNumber > 95) {
+                this.playSoundClone(this.standartSound);
+            };
+    }
+
     }
     
 }

@@ -110,4 +110,5 @@ class MovableObject extends DrawableObject {
     const audio = loadedAudios[audioref];
     audio.pause();
     }
+
 }

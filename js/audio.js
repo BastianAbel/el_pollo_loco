@@ -21,13 +21,13 @@ let audioInfList = {
     },
     chickChirp : {
         'src' : 'sounds/chick-chirping-75543.mp3',
-        'volume' : 1,
+        'volume' : 0.3,
         'autoplay' : false,
         'loop' : false
     },
-    chickenCluking : {
+    chickenClucking : {
         'src' : 'sounds/chicken-cluking-type-3-293320.mp3',
-        'volume' : 1,
+        'volume' : 0.1,
         'autoplay' : false,
         'loop' : false
     },

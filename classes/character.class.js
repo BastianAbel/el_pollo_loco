@@ -164,7 +164,6 @@ class Character extends MovableObject {
         if (this.world.keyboard.right || this.world.keyboard.left) {
             let i = this.currentImage % this.IMAGES_WALKING.length;
                 if((i === 2 || i === 5) && this.lastPlayedStepImg != i) {
-                    console.log('currentImage = ', i, '. LastPlayedImage = ', this.lastPlayedStepImg)
                     this.lastPlayedStepImg = i;
                     this.playSoundClone('sandStep');
                 }

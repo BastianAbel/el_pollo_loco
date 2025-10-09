@@ -81,6 +81,8 @@ class Endboss extends MovableObject {
         }else {}
     }
 
+    updateSound() {}
+
     activateAgro() {
         let playerX = this.world.character.x;
         if(playerX + 450 >= this.x && this.agro === 0) {

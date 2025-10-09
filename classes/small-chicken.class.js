@@ -7,6 +7,7 @@ class SmallChicken extends Chicken {
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
+    standartSound = 'chickChirp';
 
 
 
@@ -31,5 +32,6 @@ class SmallChicken extends Chicken {
             this.moveLeft();     
         }
     }
+
 
 }

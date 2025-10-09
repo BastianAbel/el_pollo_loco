@@ -43,16 +43,16 @@ const level_1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        // new SmallChicken(this.level_end_x),
-        // new SmallChicken(this.level_end_x),
-        // new SmallChicken(this.level_end_x),
-        // new SmallChicken(this.level_end_x),
-        // new SmallChicken(this.level_end_x),
-        // new Chicken(this.level_end_x),
-        // new Chicken(this.level_end_x),
-        // new Chicken(this.level_end_x),
-        // new Chicken(this.level_end_x),
-        // new Chicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new SmallChicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
+        new Chicken(this.level_end_x),
         new Endboss()
     ],
     bottles = [
