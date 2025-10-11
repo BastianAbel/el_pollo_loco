@@ -112,9 +112,17 @@ class Character extends MovableObject {
     }
 
     jumpsOn(obj) {
+        return (this.isHigherThan(obj) && this.isFalling())
+    }
+
+    isHigherThan(obj) {
         const char = this.getBounds();
         const object = obj.getBounds();
-        return object.top + 50 > char.bottom && this.speedY < 0
+        return object.top + 50 > char.bottom    
+    }
+
+    isFalling() {
+        return this.speedY < 0
     }
 
     updateAnimation() {
