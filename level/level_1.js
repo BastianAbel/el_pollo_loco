@@ -63,15 +63,23 @@ const level_1 = new Level(
         new CollectableBottle('img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
     ],
     coins = [
+        new CollectableCoin(200, 150),
+        new CollectableCoin((400), 200),
+        new CollectableCoin((400 + 20), 150),
+        new CollectableCoin((400 + 60), 100),
+        new CollectableCoin((400 + 120), 75),
+        new CollectableCoin((400 + 180), 100),
+        new CollectableCoin((400 + 220), 150),
+        new CollectableCoin((400 + 240), 200),
         new CollectableCoin(800, 150),
         new CollectableCoin(1300, 150),
-        new CollectableCoin(1900 - 120, 75 + 125),
-        new CollectableCoin(1900 - 100, 75 + 75),
-        new CollectableCoin(1900 - 60, 75 + 25),
-        new CollectableCoin(1900, 75),
-        new CollectableCoin(1900 + 60, 75 + 25),
-        new CollectableCoin(1900 + 100, 75 + 75),
-        new CollectableCoin(1900 + 120, 75 + 125),
+        new CollectableCoin((1780), 200),
+        new CollectableCoin((1780 + 20), 150),
+        new CollectableCoin((1780 + 60), 100),
+        new CollectableCoin((1780 + 120), 75),
+        new CollectableCoin((1780 + 180), 100),
+        new CollectableCoin((1780 + 220), 150),
+        new CollectableCoin((1780 + 240), 200),
         new CollectableCoin(2400, 150)
     ]
 

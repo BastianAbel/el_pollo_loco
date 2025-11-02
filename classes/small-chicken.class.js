@@ -15,7 +15,7 @@ class SmallChicken extends Chicken {
         super().loadImg('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = Math.random() * (levelEnd - 500) + 150;
+        this.x = (Math.random() * (levelEnd - 500)) + 650;
         this.speed = this.baseSpeed * (Math.random() * 0.5) + 0.3;
         this.offset = { left : 14, top : 10, right : 14, bottom : 10 }    
     }
