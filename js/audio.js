@@ -97,14 +97,24 @@ function loadAllSounds() {
 }
 
 function toggleVolume() {
-    volumeButton = document.getElementById('volume');
     if(!muted) {
         changeMuteStatusTo(true)
-        volumeButton.src = "img/controls/volume-off.svg";
+        changeMuteIcon()
     } else{
         changeMuteStatusTo(false)
-        volumeButton.src = "img/controls/volume-on.svg";
+        changeMuteIcon()
     }
+}
+
+function changeMuteIcon() {
+    volumeButton = document.getElementById('volume');
+    let status;
+    if(muted) {
+        status = "off";
+    }else {
+        status = "on";
+    }
+    volumeButton.src = "img/controls/volume-" + status + ".svg";
 }
 
 function changeMuteStatusTo(muteStatus) {
@@ -113,12 +123,15 @@ function changeMuteStatusTo(muteStatus) {
         audio = loadedAudios[x];
         audio.muted = muteStatus;
     }
+    localStorage.setItem("muteStatus", muted);
 }
 
-
-
-
-
-
+function checkForMuteSave() {
+    let localStorageSave = localStorage.getItem("muteStatus");
+    muted = localStorageSave;
+    changeMuteStatusTo(muted);
+    changeMuteIcon();
+}
 
 loadAllSounds()
+checkForMuteSave();
