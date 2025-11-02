@@ -252,7 +252,7 @@ class Character extends MovableObject {
         if (this.coins < 10) {
             this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
             this.coins += 1;
-            this.world.coinBar.updateStatusbar(this.coins / 10);
+            this.world.coinBar.updateStatusbar(this.coins / this.world.level_max_coins);
             this.playCoinPickupSound();
         }
     }

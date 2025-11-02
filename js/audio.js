@@ -21,7 +21,7 @@ let audioInfList = {
     },
     chickChirp : {
         'src' : 'sounds/chick-chirping-75543.mp3',
-        'volume' : 0.3,
+        'volume' : 0.1,
         'autoplay' : false,
         'loop' : false
     },
@@ -51,13 +51,13 @@ let audioInfList = {
     },
     coinPickup : {
         'src' : 'sounds/coin-pickup.mp3',
-        'volume' : 0.5,
+        'volume' : 0.1,
         'autoplay' : false,
         'loop' : true
     },
     bottlePickup : {
         'src' : 'sounds/bottle-pickup.mp3',
-        'volume' : 0.5,
+        'volume' : 0.2,
         'autoplay' : false,
         'loop' : true
     },

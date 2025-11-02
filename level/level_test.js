@@ -43,7 +43,7 @@ const level_test = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 720 * 5)
     ],
     enemies = [
-        // new Endboss()
+        new Endboss()
     ],
     bottles = [
         new CollectableBottle('img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),

@@ -92,11 +92,13 @@ class Endboss extends MovableObject {
 
     playAlertAnimation() {
         if(this.status == "idle") {
+            this.alertTime = new Date().getTime();
             this.status = "allert";
             this.currentImage = 0;
         }
-        this.playAnimationOnce(this.IMAGES_ALERT);
-        if(this.currentImage >= this.IMAGES_ALERT.length) {
+        this.playAnimation(this.IMAGES_ALERT);
+        let currentTime = new Date().getTime();
+        if((this.alertTime + 1500) < currentTime) {
             this.status = "attack";
             this.agro = 2;
         }

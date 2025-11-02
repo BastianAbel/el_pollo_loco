@@ -14,6 +14,7 @@ class World {
     coinBar = new Statusbar('img/7_statusbars/3_icons/icon_coin.png', 94, 0);
     bossBar;
     throwables = [];
+    level_max_coins = this.level.coins.length;
 
     constructor(canvas) {
         this.setWorld();
