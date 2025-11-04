@@ -98,7 +98,7 @@ class MovableObject extends DrawableObject {
         audioClone.volume = original.volume;
         audioClone.muted = original.muted;
         audioClone.play()
-        clonedAudios.push(audioClone);
+        // clonedAudios.push(audioClone);
     }
   
 
@@ -110,6 +110,12 @@ class MovableObject extends DrawableObject {
     pauseSound(audioref) {
     const audio = loadedAudios[audioref];
     audio.pause();
+    }
+
+    playDeathSound() {
+        if(!this.dead) {
+            this.playSoundClone(this.deathSound);
+        }
     }
 
 }

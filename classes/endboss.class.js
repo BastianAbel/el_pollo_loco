@@ -38,6 +38,7 @@ class Endboss extends MovableObject {
     agro = 0;
     status = "idle";
     bossBar;
+    deathSound = 'chickenHurt';
 
     constructor() {    
         super().loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
@@ -65,6 +66,7 @@ class Endboss extends MovableObject {
     
     updateAnimation() {
         if(this.isDead()) {
+            this.playDeathSound();
             this.playDeathAnimation();
         }else if(this.isHurt()) {            
             this.playAnimation(this.IMAGES_HURT);

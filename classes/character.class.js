@@ -66,6 +66,7 @@ class Character extends MovableObject {
     throwing = false;
     thowingInterval;
     firstMove;
+    deathSound = 'death'
 
     constructor(world) {
         super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
@@ -180,13 +181,7 @@ class Character extends MovableObject {
 
     updateJumpSound() {
         if (this.world.keyboard.jump && !this.isAboveGround()) {
-            this.playSoundClone('jump');
-        }
-    }
-
-    playDeathSound() {
-        if(!this.dead) {
-            this.playSoundClone('death');
+            this.playSound('jump');
         }
     }
 

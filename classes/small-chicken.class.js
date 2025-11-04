@@ -8,6 +8,7 @@ class SmallChicken extends Chicken {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
     standartSound = 'chickChirp';
+    deathSound = 'chickenHurt';
 
 
 

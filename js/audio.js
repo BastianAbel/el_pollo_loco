@@ -4,7 +4,7 @@ let audioInfList = {
     music : {
         'src' : 'sounds/guitar-mexican-vibes-230195.mp3',
         'volume' : 0.1,
-        'autoplay' : false,
+        'autoplay' : true,
         'loop' : true
     },
     sandStep : {
@@ -15,7 +15,7 @@ let audioInfList = {
     },
     angryChicken : {
         'src' : 'sounds/angry-chicken-imitation-89241.mp3',
-        'volume' : 0.3,
+        'volume' : 0.05,
         'autoplay' : false,
         'loop' : false
     },
@@ -27,13 +27,13 @@ let audioInfList = {
     },
     chickenClucking : {
         'src' : 'sounds/chicken-cluking-type-3-293320.mp3',
-        'volume' : 0.1,
+        'volume' : 0.05,
         'autoplay' : false,
         'loop' : false
     },
     chickenHurt : {
         'src' : 'sounds/chicken-squawk-72188.mp3',
-        'volume' : 1,
+        'volume' : 0.1,
         'autoplay' : false,
         'loop' : false
     },
@@ -45,39 +45,39 @@ let audioInfList = {
     },
     throw : {
         'src' : 'sounds/throw.mp3',
-        'volume' : 0.3,
+        'volume' : 0.05,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     },
     coinPickup : {
         'src' : 'sounds/coin-pickup.mp3',
-        'volume' : 0.1,
+        'volume' : 0.05,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     },
     bottlePickup : {
         'src' : 'sounds/bottle-pickup.mp3',
         'volume' : 0.2,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     },
     hurt : {
         'src' : 'sounds/hurt.mp3',
-        'volume' : 0.6,
+        'volume' : 0.2,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     },
     death : {
         'src' : 'sounds/death.mp3',
         'volume' : 0.6,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     },
     jump : {
         'src' : 'sounds/jump.mp3',
         'volume' : 0.6,
         'autoplay' : false,
-        'loop' : true
+        'loop' : false
     }
 };
 

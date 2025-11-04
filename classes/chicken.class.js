@@ -12,13 +12,14 @@ class Chicken extends MovableObject {
     ];
     damage = 5;
     standartSound = 'chickenClucking';
+    deathSound = 'chickenHurt';
 
     constructor(levelEnd) {
         super().loadImg('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.x = (Math.random() * (levelEnd - 500)) + 650;
-        this.speed = this.baseSpeed * (Math.random() * 0.5) + 0.3;
+        this.speed = this.baseSpeed * (Math.random() * 0.7) + 0.3;
         this.offset = { left : 5, top : 10, right : 0, bottom : 10 };
         this.y = this.baseY;   
     }
@@ -31,6 +32,7 @@ class Chicken extends MovableObject {
     
     updateAnimation() {
         if(this.isDead()) {
+            this.playDeathSound();
             this.playDeathAnimation();
         } else {
             this.playAnimation(this.IMAGES_WALKING);
@@ -42,7 +44,7 @@ class Chicken extends MovableObject {
         if((currentTime % 5000) <= 40) {
             const randomNumber = Math.random() * 100;
             if(randomNumber > 95) {
-                this.playSoundClone(this.standartSound);
+                this.playSound(this.standartSound);
             };
     }
 
