@@ -82,7 +82,6 @@ let audioInfList = {
 };
 
 let loadedAudios = {};
-let clonedAudios = [];
 
 function loadAllSounds() {
     const keys = Object.keys(audioInfList)
@@ -122,10 +121,6 @@ function changeMuteStatusTo(muteStatus) {
     muted = muteStatus;
     for(x in loadedAudios) {
         audio = loadedAudios[x];
-        audio.muted = muteStatus;
-    };
-        for(x in clonedAudios) {
-        audio = clonedAudios[x];
         audio.muted = muteStatus;
     };
     localStorage.setItem("muteStatus", muted);
