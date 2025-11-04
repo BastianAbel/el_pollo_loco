@@ -80,8 +80,12 @@ class Endboss extends MovableObject {
             }
         }else {}
     }
-
-    updateSound() {}
+    
+    updateSound() {
+        if(this.agro == 1) {
+            this.playSound("angryChicken")
+        }
+    }
 
     activateAgro() {
         let playerX = this.world.character.x;
@@ -98,7 +102,7 @@ class Endboss extends MovableObject {
         }
         this.playAnimation(this.IMAGES_ALERT);
         let currentTime = new Date().getTime();
-        if((this.alertTime + 1500) < currentTime) {
+        if((this.alertTime + 2000) < currentTime) {
             this.status = "attack";
             this.agro = 2;
         }

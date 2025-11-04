@@ -84,13 +84,13 @@ class MovableObject extends DrawableObject {
         this.lastHurt = new Date().getTime();
     }
 
-    playSoundClone(audioref) {
-    const original = loadedAudios[audioref];
-    const audioClone = original.cloneNode(true);
-    audioClone.volume = original.volume;
-    audioClone.muted = muted;
-    audioClone.play();
-    }
+    // playSoundClone(audioref) {
+    // const original = loadedAudios[audioref];
+    // const audioClone = original.cloneNode(true);
+    // audioClone.volume = original.volume;
+    // audioClone.muted = muted;
+    // audioClone.play();
+    // }
 
     playSoundClone(audioref) {
         const original = loadedAudios[audioref];
@@ -98,6 +98,7 @@ class MovableObject extends DrawableObject {
         audioClone.volume = original.volume;
         audioClone.muted = original.muted;
         audioClone.play()
+        clonedAudios.push(audioClone);
     }
   
 

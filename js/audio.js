@@ -15,7 +15,7 @@ let audioInfList = {
     },
     angryChicken : {
         'src' : 'sounds/angry-chicken-imitation-89241.mp3',
-        'volume' : 1,
+        'volume' : 0.3,
         'autoplay' : false,
         'loop' : false
     },
@@ -82,6 +82,7 @@ let audioInfList = {
 };
 
 let loadedAudios = {};
+let clonedAudios = [];
 
 function loadAllSounds() {
     const keys = Object.keys(audioInfList)
@@ -122,14 +123,20 @@ function changeMuteStatusTo(muteStatus) {
     for(x in loadedAudios) {
         audio = loadedAudios[x];
         audio.muted = muteStatus;
-    }
+    };
+        for(x in clonedAudios) {
+        audio = clonedAudios[x];
+        audio.muted = muteStatus;
+    };
     localStorage.setItem("muteStatus", muted);
 }
 
 function checkForMuteSave() {
     let localStorageSave = localStorage.getItem("muteStatus");
-    muted = localStorageSave;
-    changeMuteStatusTo(muted);
+    if(localStorageSave !== null) {
+        muted = (localStorageSave === "true");
+        changeMuteStatusTo(muted);
+    }
     changeMuteIcon();
 }
 
