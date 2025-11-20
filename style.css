@@ -22,6 +22,10 @@ body {
     background-position: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 h1 {
     color: white;
 }
@@ -47,20 +51,59 @@ canvas {
     width: 100%;
     position: absolute;
     top: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.top-controls, .bottom-controls {
+    padding: 4px;
+    gap: 16px;
 }
 
 .top-controls {
-    width: calc(100% -8px);
-    padding: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
 }
 
 .top-controls button img {
     height: 32px;
     width: 32px;
+}
+
+.bottom-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-controls button {
+    height: 64px;
+    min-width: 64px;
+    border-radius: 32px;
+    border-style: solid;
+    border-color: black;
+    background-color: #dc560d;
+    color: white;
+    padding: 0;
+}
+
+.bottom-controls img {
+    height: 40px;
+    width: 40px;
+}
+
+#btn-throw {
+    height: 40px;
+    width: 40px;
+}
+
+#btn-right {
+    transform: rotate(180deg);
+}
+
+#btn-jump {
+    transform: rotate(90deg);
 }
 
 .button {
