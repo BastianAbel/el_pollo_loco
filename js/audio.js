@@ -1,10 +1,10 @@
-let muted = false;
+let muted = true;
 
 let audioInfList = {
     music : {
         'src' : 'sounds/guitar-mexican-vibes-230195.mp3',
         'volume' : 0.1,
-        'autoplay' : true,
+        'autoplay' : false,
         'loop' : true
     },
     sandStep : {
@@ -83,6 +83,36 @@ let audioInfList = {
 
 let loadedAudios = {};
 
+const userInteractionEvents = [
+    "click",
+    "mousedown",
+    "mouseup",
+    "keydown",
+    "keyup",
+    "touchstart",
+    "touchend",
+    "pointerdown",
+    "pointerup"
+];
+
+function addEventlistenerForFirstInteraction() {
+    userInteractionEvents.forEach((interaction) => {
+        document.addEventListener(interaction, enableAudio)
+    })
+}
+
+function removeEventlistenerForFirstInteraction() {
+    userInteractionEvents.forEach((interaction) => {
+        document.removeEventListener(interaction, enableAudio)
+    })
+}
+
+function enableAudio() {
+    loadedAudios.music.play().then(() => {
+        removeEventlistenerForFirstInteraction();
+    });
+}
+
 function loadAllSounds() {
     const keys = Object.keys(audioInfList)
     for (let i = 0; i < keys.length; i++) {
@@ -93,6 +123,7 @@ function loadAllSounds() {
         audio.preload = 'auto';
         audio.autoplay = audioInfList[keys[i]]['autoplay'];
         audio.loop = audioInfList[keys[i]]['loop'];
+        audio.muted = muted;
     }
 }
 
