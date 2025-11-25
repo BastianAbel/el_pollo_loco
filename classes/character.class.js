@@ -69,7 +69,7 @@ class Character extends MovableObject {
     deathSound = 'death'
 
     constructor(world) {
-        super().loadImg('../img/2_character_pepe/2_walk/W-21.png');
+        super().loadImg('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
