@@ -59,6 +59,7 @@ canvas {
 .top-controls, .bottom-controls {
     padding: 4px;
     gap: 16px;
+    z-index: 1;
 }
 
 .top-controls {
@@ -77,7 +78,7 @@ canvas {
     justify-content: space-between;
 }
 
-.bottom-controls button {
+.styled-button {
     height: 64px;
     min-width: 64px;
     border-radius: 32px;
@@ -86,6 +87,12 @@ canvas {
     background-color: #dc560d;
     color: white;
     padding: 0;
+}
+
+.restart-button span{
+    font-family: 'rye';
+    font-size: 40px;
+    padding: 0 16px;
 }
 
 .bottom-controls img {
@@ -145,17 +152,16 @@ canvas {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
     height: 60%;
     width: 20%;
-}
 
-.control-card span {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    font-size: 24px;
-    color: white;
+    span {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+    }
 }
 
 .control-card img {
@@ -176,4 +182,46 @@ canvas {
 .image-flip {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+}
+
+#start-and-stop-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    .background {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    .game-over-img {
+        transform: scale(1);
+        animation: pulse 2s infinite;
+    }
+
+    div {
+        padding-bottom: 6%;
+
+        button {
+            height: 10% !important;
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

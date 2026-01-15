@@ -130,6 +130,7 @@ class Character extends MovableObject {
         if (this.isDead()) {
             this.playDeathSound();
             this.playDeathAnimation();
+            openGameOverScreen();
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.resetIdle();
