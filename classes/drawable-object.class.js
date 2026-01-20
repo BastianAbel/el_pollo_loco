@@ -84,6 +84,8 @@ class DrawableObject {
     playAnimationOnce(arr) {
         if (this.currentImage < arr.length) {
             this.playAnimation(arr);
+        }else if(this instanceof Character){
+            openGameOverScreen();
         }
     }
 
