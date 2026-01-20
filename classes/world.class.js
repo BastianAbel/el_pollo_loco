@@ -20,7 +20,7 @@ class World {
         this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
-        this.startGame()
+        // this.startGame()
     }
 
     startGame() {

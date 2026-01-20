@@ -203,11 +203,13 @@ canvas {
         animation: pulse 2s infinite;
     }
 
-    div {
-        padding-bottom: 6%;
+    button {
+        margin-bottom: 6%;
+        z-index: 1;
+        height: 64px;
 
-        button {
-            height: 10% !important;
+        span {
+            font-size: 24px;
         }
     }
 }
