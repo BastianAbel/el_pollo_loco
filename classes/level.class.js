@@ -14,4 +14,15 @@ class Level {
         this.bottles = bottles;
         this.coins = coins;
     }
+
+    clone() {
+        return new Level(
+            this.level_end_x,
+            this.backgroundObjects.map(obj => obj.clone()),
+            this.clouds.map(c => c.clone()),
+            this.enemies.map(e => e.clone(this.level_end_x)),
+            this.bottles.map(b => b.clone()),
+            this.coins.map(c => c.clone())
+        )
+    }
 }

@@ -21,6 +21,10 @@ class SmallChicken extends Chicken {
         this.offset = { left : 14, top : 10, right : 14, bottom : 10 }    
     }
 
+    clone(levelEnd) {
+        return new SmallChicken(levelEnd)
+    }
+
     updateMovement() {
         this.applyGravity();
         if(!this.isDead()) {

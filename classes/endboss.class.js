@@ -56,6 +56,10 @@ class Endboss extends MovableObject {
         this.damage = 20;
     }
 
+    clone(levelEnd) {
+        return new Endboss()
+    }
+
     updateMovement() {
         if(!this.isDead()) {
             if(this.agro == 2) {

@@ -24,6 +24,10 @@ class Chicken extends MovableObject {
         this.y = this.baseY;   
     }
 
+    clone(levelEnd) {
+        return new Chicken(levelEnd)
+    }
+
     updateMovement() {
         if(!this.isDead()) {
             this.moveLeft(); 

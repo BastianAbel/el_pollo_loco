@@ -4,6 +4,12 @@ class BackgroundObject extends MovableObject {
     
     constructor(imgPath, x) {
         super().loadImg(imgPath);
+        this.imgPath = imgPath;
         this.x = x;
     }
+
+    clone() {
+        return new BackgroundObject(this.imgPath, this.x)
+    }
+
 }
