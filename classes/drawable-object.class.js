@@ -89,6 +89,6 @@ class DrawableObject {
         }else if(this instanceof Endboss) {
             openWinScreen();
         }
-        }
+    }
 
 }
