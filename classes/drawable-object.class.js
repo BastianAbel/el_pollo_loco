@@ -86,7 +86,9 @@ class DrawableObject {
             this.playAnimation(arr);
         }else if(this instanceof Character){
             openGameOverScreen();
+        }else if(this instanceof Endboss) {
+            openWinScreen();
         }
-    }
+        }
 
 }

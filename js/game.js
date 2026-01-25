@@ -28,3 +28,11 @@ function openGameOverScreen() {
     gameoverlayRef.innerHTML = gameoverTemplate;
     toggleOverlay("start-and-stop-screen");   
 }
+
+function openWinScreen() {
+    world.stopGame();
+    const gameoverTemplate = getWinTemplate();
+    let gameoverlayRef = document.getElementById('start-and-stop-screen');
+    gameoverlayRef.innerHTML = gameoverTemplate;
+    toggleOverlay("start-and-stop-screen");   
+}
