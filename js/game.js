@@ -1,12 +1,15 @@
 let canvas;
 let world;
+let resizeTimer;
 
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas);
+    checkAndShowScreenInstruction()
     setMobileButtonEventlisteners()
     addEventlistenerForFirstInteraction()
+    window.addEventListener('resize', checkAndShowScreenInstruction);
 }
 
 function start() {

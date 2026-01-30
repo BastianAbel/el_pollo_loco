@@ -31,3 +31,32 @@ function toggleOverlay(id) {
     element = document.getElementById(id);
     element.classList.toggle('d-none');
 }
+
+function checkAndShowScreenInstruction() {
+    if(screensizeMobile()) {
+        showTurnScreenInstruction();
+    }
+}
+
+function screensizeMobile() {
+    const screenWidth = document.documentElement.clientWidth;
+    const screenHeight = document.documentElement.clientHeight;
+    const mobileMaxSize = 1024;
+    return (screenWidth < mobileMaxSize) || (screenHeight < mobileMaxSize)
+}
+
+function screenIsHorizontal() {
+    const screenWidth = document.documentElement.clientWidth;
+    const screenHeight = document.documentElement.clientHeight;
+    return (screenHeight < screenWidth)
+}
+
+function showTurnScreenInstruction() {
+    const containerRef = document.getElementById('forceHorizontalScreenOverlay');
+    if(!screenIsHorizontal()) {
+        containerRef.classList.remove('d-none');
+    }else {
+        containerRef.classList.add('d-none');
+    }
+    console.log('process finished')
+}
