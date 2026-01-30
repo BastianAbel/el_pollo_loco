@@ -11,14 +11,16 @@ function init() {
 
 function start() {
     world.startGame();
-    toggleOverlay("start-and-stop-screen");
+    toggleOverlay('start-and-stop-screen');   
+    toggleOverlay('movement-button-overlay');   
 }
 
 function restart() {
     world = 0;
     world = new World(canvas);
     world.startGame();
-    toggleOverlay("start-and-stop-screen");
+    toggleOverlay('start-and-stop-screen');   
+    toggleOverlay('movement-button-overlay');   
 }
 
 function openGameOverScreen() {
@@ -26,7 +28,8 @@ function openGameOverScreen() {
     const gameoverTemplate = getGameOverTemplate();
     let gameoverlayRef = document.getElementById('start-and-stop-screen');
     gameoverlayRef.innerHTML = gameoverTemplate;
-    toggleOverlay("start-and-stop-screen");   
+    toggleOverlay('start-and-stop-screen');   
+    toggleOverlay('movement-button-overlay');   
 }
 
 function openWinScreen() {
@@ -34,5 +37,6 @@ function openWinScreen() {
     const gameoverTemplate = getWinTemplate();
     let gameoverlayRef = document.getElementById('start-and-stop-screen');
     gameoverlayRef.innerHTML = gameoverTemplate;
-    toggleOverlay("start-and-stop-screen");   
+    toggleOverlay('start-and-stop-screen');   
+    toggleOverlay('movement-button-overlay');   
 }
