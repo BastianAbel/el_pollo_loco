@@ -82,6 +82,12 @@ canvas {
     display: none;
 }
 
+.top-controls .button,
+.bottom-controls button {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 .styled-button {
     height: 64px;
     min-width: 64px;

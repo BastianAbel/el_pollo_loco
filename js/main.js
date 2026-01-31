@@ -1,3 +1,12 @@
+document.addEventListener("contextmenu", function (e) {
+  // check if the click happened on a button inside top/bottom controls
+  if (
+    e.target.closest(".top-controls .button, .bottom-controls button")
+  ) {
+    e.preventDefault();
+  }
+});
+
 function toggleFullscreen() {
     if(!document.fullscreenElement) {
         openFullscreen();
