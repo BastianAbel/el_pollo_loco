@@ -72,6 +72,7 @@ function showTurnScreenInstruction() {
 function toggleControls() {
     toggleOverlay('movement-controls-left');   
     toggleOverlay('movement-controls-right');   
+    toggleOverlay('game-controls')
     element = document.getElementById('bottom-controls');
     element.classList.toggle('justify-content-center');
 }

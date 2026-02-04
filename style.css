@@ -204,11 +204,6 @@ canvas {
         position: absolute;
     }
 
-    .game-over-img {
-        transform: scale(1);
-        animation: pulse 2s infinite;
-    }
-
     button {
         margin-bottom: 6%;
         z-index: 2;
@@ -325,4 +320,9 @@ canvas {
 
 .justify-content-center {
     justify-content: center
+}
+
+.game-state-img {
+    transform: scale(1);
+    animation: pulse 2s infinite;
 }

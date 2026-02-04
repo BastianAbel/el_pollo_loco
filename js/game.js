@@ -22,7 +22,7 @@ function restart() {
     world = 0;
     world = new World(canvas);
     world.startGame();
-    toggleOverlay('overlay');   
+    toggleOverlay('overlay');
     toggleControls();
 }
 
@@ -31,14 +31,40 @@ function openGameOverScreen() {
     const gameoverTemplate = getGameOverBackgroundTemplate();
     let gameoverlayRef = document.getElementById('overlay');
     gameoverlayRef.innerHTML = gameoverTemplate;
-    toggleOverlay('overlay');   
+    toggleOverlay('overlay');  
+    setGameControlButtons('lose') 
     toggleControls();
 }
+
 function openWinScreen() {
     world.stopGame();
-    const gameoverTemplate = getWinBackgroundTemplate();
+    const gameWonTemplate = getWinBackgroundTemplate();
     let gameoverlayRef = document.getElementById('overlay');
-    gameoverlayRef.innerHTML = gameoverTemplate;
+    gameoverlayRef.innerHTML = gameWonTemplate;
     toggleOverlay('overlay');   
+    setGameControlButtons('win')
     toggleControls();
 }
+
+function openHomeScreen() {
+    world.stopGame();
+    const gameWonTemplate = getHomeScreenTemplate();
+    let gameoverlayRef = document.getElementById('overlay');
+    gameoverlayRef.innerHTML = gameWonTemplate;
+    setGameControlButtons('exit')
+}
+
+function setGameControlButtons(gamestate) {
+    const buttonContainerRef = document.getElementById('game-controls');
+    let buttonHTML;
+    if(gamestate === 'exit'){
+        buttonHTML = getStartButtonTemplate();
+    }else if (gamestate === 'win') {
+        buttonHTML = getWinButtonTemplate();
+        buttonHTML += getExitButtonTemplate();
+    }else if (gamestate === 'lose') {
+        buttonHTML = getLoseButtonTemplate();
+        buttonHTML += getExitButtonTemplate();
+    }
+    buttonContainerRef.innerHTML = buttonHTML; 
+}  
