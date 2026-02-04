@@ -1,5 +1,4 @@
 document.addEventListener("contextmenu", function (e) {
-  // check if the click happened on a button inside top/bottom controls
   if (
     e.target.closest(".top-controls .button, .bottom-controls button")
   ) {
@@ -68,4 +67,11 @@ function showTurnScreenInstruction() {
         containerRef.classList.add('d-none');
     }
     console.log('process finished')
+}
+
+function toggleControls() {
+    toggleOverlay('movement-controls-left');   
+    toggleOverlay('movement-controls-right');   
+    element = document.getElementById('bottom-controls');
+    element.classList.toggle('justify-content-center');
 }

@@ -14,32 +14,31 @@ function init() {
 
 function start() {
     world.startGame();
-    toggleOverlay('start-and-stop-screen');   
-    toggleOverlay('movement-button-overlay');   
+    toggleOverlay('overlay');   
+    toggleControls();
 }
 
 function restart() {
     world = 0;
     world = new World(canvas);
     world.startGame();
-    toggleOverlay('start-and-stop-screen');   
-    toggleOverlay('movement-button-overlay');   
+    toggleOverlay('overlay');   
+    toggleControls();
 }
 
 function openGameOverScreen() {
     world.stopGame();
-    const gameoverTemplate = getGameOverTemplate();
-    let gameoverlayRef = document.getElementById('start-and-stop-screen');
+    const gameoverTemplate = getGameOverBackgroundTemplate();
+    let gameoverlayRef = document.getElementById('overlay');
     gameoverlayRef.innerHTML = gameoverTemplate;
-    toggleOverlay('start-and-stop-screen');   
-    toggleOverlay('movement-button-overlay');   
+    toggleOverlay('overlay');   
+    toggleControls();
 }
-
 function openWinScreen() {
     world.stopGame();
-    const gameoverTemplate = getWinTemplate();
-    let gameoverlayRef = document.getElementById('start-and-stop-screen');
+    const gameoverTemplate = getWinBackgroundTemplate();
+    let gameoverlayRef = document.getElementById('overlay');
     gameoverlayRef.innerHTML = gameoverTemplate;
-    toggleOverlay('start-and-stop-screen');   
-    toggleOverlay('movement-button-overlay');   
+    toggleOverlay('overlay');   
+    toggleControls();
 }
