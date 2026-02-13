@@ -32,6 +32,10 @@ h1 {
     color: white;
 }
 
+a {
+    color: white;
+}
+
 #container {
     position: relative;
     height: 480px;
@@ -103,11 +107,11 @@ canvas {
     height: 40px;
 }
 
-#btn-right {
+.btn-right {
     transform: rotate(180deg);
 }
 
-#btn-jump {
+.btn-jump {
     transform: rotate(90deg);
 }
 
@@ -242,46 +246,11 @@ canvas {
     50% {
         transform: scale(1.1);
     }
-
+    
     100% {
         transform: scale(1);
     }
 }
-
-@media(max-width: 1024px), (max-height: 1024px) {
-    .game-header {
-        display: none;
-    }
-
-    #container {
-        height: 100dvh !important;
-        width: 100dvw !important;
-        position: fixed;
-        inset: 0;
-    }
-
-    canvas {
-        height: 100dvh;
-        width: 100dvw;
-    }
-
-    .bottom-controls {
-    display: flex;
-    }
-
-    #forceHorizontalScreenOverlay {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-}
-
-
-
-
-
 
 .overlay {
     height: 100%; 
@@ -350,7 +319,91 @@ canvas {
         }
 
         && span {
-            font-size: 3cqh;
+            font-size: 2cqh;
         }
     }
+}
+
+.btn-throw:disabled, 
+.btn-left:disabled, 
+.btn-right:disabled, 
+.btn-jump:disabled {
+    display: none;
+    visibility: hidden;
+
+    && img {
+        height: 40px;
+    }
+}
+
+.impressum-game-link {
+    display: none;
+    visibility: hidden;
+}
+
+.styled-button:disabled {
+    height: 64px;
+    aspect-ratio: 1 / 1;
+
+}
+
+@media(max-width: 1024px), (max-height: 1024px) {
+    .game-header {
+        display: none;
+    }
+
+    #container {
+        height: 100dvh !important;
+        width: 100dvw !important;
+        position: fixed;
+        inset: 0;
+    }
+
+    canvas {
+        height: 100dvh;
+        width: 100dvw;
+    }
+
+    .bottom-controls {
+    display: flex;
+    }
+
+    #forceHorizontalScreenOverlay {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .game-controls, .movement-controls {
+        && button {
+            && span {
+            font-size: 3cqh;
+            }
+        }
+    }
+
+    .impressum-link {
+        display: none;
+        visibility: hidden;
+    }
+
+    .impressum-game-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        visibility: visible;
+        padding: 4px;
+        z-index: 9999;
+    }
+
+    .btn-throw:disabled, 
+    .btn-left:disabled, 
+    .btn-right:disabled, 
+    .btn-jump:disabled {
+        display: block;
+        visibility: visible;
+    }
+
 }
