@@ -68,16 +68,16 @@ class World {
      */
     checkForEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
-            this.checkForDeadEnemies();
-            this.checkPlayerEnemieCollision();
-            this.checkThrowablesEnemieCollision();
+            this.checkForDeadEnemies(enemy);
+            this.checkPlayerEnemieCollision(enemy);
+            this.checkThrowablesEnemieCollision(enemy);
         })
     }
 
     /**
      * checks for dead enemies and removes them after a certain amount of time
      */
-    checkForDeadEnemies() {
+    checkForDeadEnemies(enemy) {
         if(enemy.isDead() && enemy.corpseRotting()) {
             this.level.enemies = this.level.enemies.filter(e => e !== enemy)
         }
@@ -86,7 +86,7 @@ class World {
     /**
      * checks player enemie collisions
      */
-    checkPlayerEnemieCollision() {
+    checkPlayerEnemieCollision(enemy) {
         if(this.character.isColliding(enemy)) {
             if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss) && !enemy.isDead()) {
                 enemy.hurt(enemy.hp);
@@ -100,7 +100,7 @@ class World {
     /**
      * checks throwables collisions with enemies
      */
-    checkThrowablesEnemieCollision() {
+    checkThrowablesEnemieCollision(enemy) {
         this.throwables.forEach((bottle => {
             if(enemy.isColliding(bottle) && !enemy.isDead()) {
                 if(enemy instanceof Endboss) {
