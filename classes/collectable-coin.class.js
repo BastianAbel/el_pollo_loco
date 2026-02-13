@@ -1,5 +1,13 @@
+/**
+ * represents a collectable coin
+ */
 class CollectableCoin extends CollectableObject {
 
+    /**
+     * 
+     * @param {number} x - x-coordinate of the coin
+     * @param {number} y - y-coordinate of the coin
+     */
     constructor(x, y) {
         super().loadImg('img/8_coin/coin_1.png');
         this.height = 150;
@@ -9,6 +17,9 @@ class CollectableCoin extends CollectableObject {
         this.offset = { left : 55, top : 55, right : 55, bottom : 55 }    
     }
 
+    /**
+     * @returns clone of the original coin
+     */
     clone() {
         return new CollectableCoin(this.x, this.y)
     }

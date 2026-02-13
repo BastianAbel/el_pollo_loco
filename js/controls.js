@@ -5,14 +5,25 @@ touchControls = {
   'btn-throw' : 'throw'
 }
 
+/**
+ * sets input of control to true
+ * @param {string} control 
+ */
 function controlButtonDown(control) {
     world.keyboard[control] = true;
 }
 
+/**
+ * sets input of control to false
+ * @param {string} control 
+ */
 function controlButtonUp(control) {
     world.keyboard[control] = false;
 }
 
+/**
+ * sets eventlistener for mobile button inputs
+ */
 function setMobileButtonEventlisteners() {
   for(b in touchControls) {
     setTouchEventlistener(b);
@@ -20,6 +31,10 @@ function setMobileButtonEventlisteners() {
   }
 }
 
+/**
+ * sets eventlistener to detect mobile button touch
+ * @param {string} buttonId 
+ */
 function setTouchEventlistener(buttonId) {
   const button = document.getElementById(buttonId);
   button.addEventListener('touchstart', (e) => {
@@ -28,6 +43,10 @@ function setTouchEventlistener(buttonId) {
   })
 }
 
+/**
+ * sets eventlistener to detect mobile button touch release
+ * @param {string} buttonId 
+ */
 function setTouchEndEventlistener(buttonId) {
   const button = document.getElementById(buttonId);
   button.addEventListener('touchend', (e) => {

@@ -1,3 +1,6 @@
+/**
+ * represents the player character
+ */
 class Character extends MovableObject {
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -68,6 +71,10 @@ class Character extends MovableObject {
     firstMove;
     deathSound = 'death'
 
+    /**
+     * 
+     * @param {object} world - needs the world object of the game
+     */
     constructor(world) {
         super().loadImg('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -84,6 +91,9 @@ class Character extends MovableObject {
         this.offset = { left: 30, top: 120, right: 45, bottom: 10 }
     }
 
+    /**
+     * updates every Movement
+     */
     updateMovement() {
         if (!this.isDead()) {
             this.applyGravity()
@@ -94,6 +104,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * initiate bottle throw if input is true
+     */
     tryThrowing() {
             if (this.world.keyboard.throw) {
                 this.startThrowing();
@@ -102,6 +115,9 @@ class Character extends MovableObject {
             }
     }
 
+    /**
+     * initiates left/right movement if input is true
+     */
     tryMoving() {
             if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -114,6 +130,9 @@ class Character extends MovableObject {
             }
     }
 
+    /**
+     * initiates a jump if input is true
+     */
     tryJumping() {
             if (this.world.keyboard.jump) {
                 this.jump();
@@ -121,24 +140,40 @@ class Character extends MovableObject {
             }
     }
 
+    /**
+     * checks if the character is jumping on the insertet object
+     * @param {object} obj - object to check
+     * @returns boolean 
+     */
     jumpsOn(obj) {
         return (this.isHigherThan(obj) && this.isFalling())
     }
 
+    /**
+     * checks if the character is higher than the insertet object
+     * @param {object} obj -object to check
+     * @returns boolean
+     */
     isHigherThan(obj) {
         const char = this.getBounds();
         const object = obj.getBounds();
         return object.top + 50 > char.bottom    
     }
 
+    /**
+     * checks if the character is falling
+     * @returns boolean
+     */
     isFalling() {
         return this.speedY < 0
     }
 
+    /**
+     * updates character animations
+     */
     updateAnimation() {
         if (this.isDead()) {
-            this.playDeathSound();
-            this.playDeathAnimation();
+            this.setDeathAnimation();
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.resetIdle();
@@ -146,21 +181,49 @@ class Character extends MovableObject {
             this.playJumpAnimation(this.IMAGES_JUMPING);
             this.resetIdle();
         } else if (this.world.keyboard.right || this.world.keyboard.left) {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.resetIdle();
-            let i = this.currentImage % this.IMAGES_WALKING.length;
+            this.setMovementAnimation();
         } else {
-            this.setIdle();
-            this.playIdleAnimation();
+            this.setIdleAnimation();
         }
     }
 
+    /**
+     * plays death animation and initiates deathsound
+     */
+    setDeathAnimation() {
+        this.playDeathSound();
+        this.playDeathAnimation();
+    }
+
+    /**
+     * plays movement animation
+     */
+    setMovementAnimation() {
+            this.playAnimation(this.IMAGES_WALKING);
+            this.resetIdle();
+            let i = this.currentImage % this.IMAGES_WALKING.length;
+    }
+
+    /**
+     * plays idle animation
+     */
+    setIdleAnimation() {
+        this.setIdle();
+        this.playIdleAnimation();
+    }
+
+    /**
+     * updates character sounds
+     */
     updateSound() {
         this.updateIdleSound();
         this.updateStepSound();
         this.updateJumpSound();
     }
 
+    /**
+     * sets idle time if idle is false
+     */
     setIdle() {
         if (!this.idle) {
             this.idle = true;
@@ -168,6 +231,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * plays idle sound
+     */
     updateIdleSound() {
         if(!this.idleSound && this.longIdle() && this.idle) {
             this.idleSound = true;
@@ -178,6 +244,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * plays step sound
+     */
     updateStepSound() {
         if (this.world.keyboard.right || this.world.keyboard.left) {
             let i = this.currentImage % this.IMAGES_WALKING.length;
@@ -188,32 +257,54 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * plays jump sound
+     */
     updateJumpSound() {
         if (this.world.keyboard.jump && !this.isAboveGround()) {
             this.playSound('jump');
         }
     }
 
+    /**
+     * plays hurt sound
+     */
     playHurtSound() {
         this.playSoundClone('hurt');
     }
 
+    /**
+     * plays bottle pickup sound
+     */
     playBottlePickupSound() {
         this.playSoundClone('bottlePickup');
     }
 
+    /**
+     * plays coin pickup sound
+     */
     playCoinPickupSound() {
         this.playSoundClone('coinPickup');
     }
 
+    /**
+     * plays throw sound
+     */
     playThrowSound() {
         this.playSoundClone('throw');
     }
 
+    /**
+     * sets idle to false
+     */
     resetIdle() {
         this.idle = false;
     }
 
+
+    /**
+     * checks and plays correct animation for idle and long idle
+     */
     playIdleAnimation() {
         if (!this.longIdle()) {
             this.playAnimation(this.IMAGES_IDLE);
@@ -222,17 +313,29 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * checks if current idle is longer than 5 seconds
+     * @returns boolean
+     */
     longIdle() {
         let currentTime = new Date().getTime();
         return this.lastIdle + 5000 < currentTime
     }
 
+    /**
+     * plays jump animation
+     * @param {array} images 
+     */
     playJumpAnimation(images) {
         const thresholds = [15, 12, 8, 6, 0, -5, -8, -12];
         let index = thresholds.findIndex(threshold => this.speedY >= threshold);
         this.img = this.imageCache[images[index !== -1 ? index : images.length - 1]];
     }
 
+    /**
+     * removes incomming damage from character health and updates statusbar
+     * @param {number} dmg - incomming damage
+     */
     hurt(dmg) {
         this.hp -= dmg;
         if(this.hp < 0) {
@@ -243,6 +346,10 @@ class Character extends MovableObject {
         this.playHurtSound();
     }
 
+    /**
+     * updates bottle count and relocates the bottle
+     * @param {object} bottle - picked up bottle
+     */
     collectBottle(bottle) {
         if (this.bottles < 10) {
             bottle.relocate(this.world.level.level_end_x);
@@ -252,6 +359,10 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * updates coin statusbar and removes coin from the map
+     * @param {object} coin - picked up coin
+     */
     collectCoin(coin) {
             this.world.level.coins = this.world.level.coins.filter(c => c !== coin);
             this.coins += 1;
@@ -259,6 +370,9 @@ class Character extends MovableObject {
             this.playCoinPickupSound();
     }
 
+    /**
+     * starts bottle throwing
+     */
     startThrowing() {
         if (!this.throwing && this.bottles > 0) {
             this.throwing = true;
@@ -274,6 +388,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * stops bottle throwing
+     */
     stopThrowing() {
         if (this.throwing) {
             clearInterval(this.thowingInterval);
@@ -281,6 +398,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * initiates a throw and updates bar and bottle count
+     */
     throw() {
         this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y, this.flipImage))
         this.bottles -= 1;

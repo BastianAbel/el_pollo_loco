@@ -95,24 +95,36 @@ const userInteractionEvents = [
     "pointerup"
 ];
 
+/**
+ * sets eventlistener to detect interaction
+ */
 function addEventlistenerForFirstInteraction() {
     userInteractionEvents.forEach((interaction) => {
         document.addEventListener(interaction, enableAudio)
     })
 }
 
+/**
+ * removes eventlistener to detect interaction
+ */
 function removeEventlistenerForFirstInteraction() {
     userInteractionEvents.forEach((interaction) => {
         document.removeEventListener(interaction, enableAudio)
     })
 }
 
+/**
+ * enables the sounds after first interaction
+ */
 function enableAudio() {
     loadedAudios.music.play().then(() => {
         removeEventlistenerForFirstInteraction();
     });
 }
 
+/**
+ * loads all sounds
+ */
 function loadAllSounds() {
     const keys = Object.keys(audioInfList)
     for (let i = 0; i < keys.length; i++) {
@@ -127,6 +139,9 @@ function loadAllSounds() {
     }
 }
 
+/**
+ * toggles mutestatus and icon
+ */
 function toggleVolume() {
     if(!muted) {
         changeMuteStatusTo(true)
@@ -137,6 +152,9 @@ function toggleVolume() {
     }
 }
 
+/**
+ * changes mute icon to current mute state
+ */
 function changeMuteIcon() {
     volumeButton = document.getElementById('volume');
     let status;
@@ -148,6 +166,10 @@ function changeMuteIcon() {
     volumeButton.src = "img/controls/volume-" + status + ".svg";
 }
 
+/**
+ * changes mutestatus to input state
+ * @param {boolean} muteStatus 
+ */
 function changeMuteStatusTo(muteStatus) {
     muted = muteStatus;
     for(x in loadedAudios) {
@@ -157,6 +179,9 @@ function changeMuteStatusTo(muteStatus) {
     localStorage.setItem("muteStatus", muted);
 }
 
+/**
+ * checks localstorage for saved mutestatus
+ */
 function checkForMuteSave() {
     let localStorageSave = localStorage.getItem("muteStatus");
     if(localStorageSave !== null) {

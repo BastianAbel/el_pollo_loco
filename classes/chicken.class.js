@@ -1,3 +1,6 @@
+/**
+ * represents the chicken enemie
+ */
 class Chicken extends MovableObject {
     height = 120;
     width = 120;
@@ -14,6 +17,9 @@ class Chicken extends MovableObject {
     standartSound = 'chickenClucking';
     deathSound = 'chickenHurt';
 
+    /**
+     * @param {number} levelEnd - coordinate of the level end
+     */
     constructor(levelEnd) {
         super().loadImg('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -24,16 +30,27 @@ class Chicken extends MovableObject {
         this.y = this.baseY;   
     }
 
+    /**
+     * 
+     * @param {number} levelEnd - coordinate of the level end
+     * @returns clone of the original enemie
+     */
     clone(levelEnd) {
         return new Chicken(levelEnd)
     }
 
+    /**
+     * updates the movement
+     */
     updateMovement() {
         if(!this.isDead()) {
             this.moveLeft(); 
         }
     }
     
+    /**
+     * updates the animation
+     */
     updateAnimation() {
         if(this.isDead()) {
             this.playDeathSound();
@@ -43,6 +60,9 @@ class Chicken extends MovableObject {
         }
     }
 
+    /**
+     * updates the sound
+     */
     updateSound() {
         const currentTime = new Date().getTime();
         if((currentTime % 5000) <= 40) {

@@ -1,3 +1,6 @@
+/**
+ * represents a thrown bottle
+ */
 class ThrowableBottle extends ThrowableObject {
     speedY = 15;
     y = 250;
@@ -15,6 +18,12 @@ class ThrowableBottle extends ThrowableObject {
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ]
 
+    /**
+     * @param {object} world - reference of the world
+     * @param {number} x - x-coordinate of the bottle
+     * @param {number} y - y-coordinate of the bottle
+     * @param {boolean} direction - represents direction right or left 
+     */
     constructor(world, x, y, direction) {
         super().loadImg('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_ROTATION);
@@ -27,6 +36,9 @@ class ThrowableBottle extends ThrowableObject {
         this.direction = direction;
     }
 
+    /**
+     * updates bottle movement
+     */
     updateMovement() {
         this.applyGravity();
         if(this.isAboveGround() && !this.direction) {
@@ -38,10 +50,16 @@ class ThrowableBottle extends ThrowableObject {
         }
     }
 
+    /**
+     * updates bottle animation
+     */
     updateAnimation() {
         this.playAnimation(this.IMAGES_ROTATION);
     }
 
+    /**
+     * deletes bottle of the world
+     */
     delete() {
         this.world.throwables = this.world.throwables.filter(t => t !== this);
     }

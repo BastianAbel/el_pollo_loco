@@ -1,3 +1,6 @@
+/**
+ * represents a collectable bottle
+ */
 class CollectableBottle extends CollectableObject {
 
     constructor(imgPath) {
@@ -11,10 +14,17 @@ class CollectableBottle extends CollectableObject {
     
     }
 
+    /**
+     * @returns a clone of the bottle
+     */
     clone() {
         return new CollectableBottle(this.imgPath)
     }
 
+    /**
+     * relocates the bottle position inside the level
+     * @param {number} levelEnd - coordinate of the level end
+     */
     relocate(levelEnd) {
         this.x = Math.random() * (levelEnd - 200) + 200;
     }

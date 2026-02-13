@@ -1,3 +1,6 @@
+/**
+ * represents the small chicken enemie
+ */
 class SmallChicken extends Chicken {
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -10,8 +13,9 @@ class SmallChicken extends Chicken {
     standartSound = 'chickChirp';
     deathSound = 'chickenHurt';
 
-
-
+    /**
+     * @param {number} levelEnd - coordinate of the level end
+     */
     constructor(levelEnd) {
         super().loadImg('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -21,10 +25,17 @@ class SmallChicken extends Chicken {
         this.offset = { left : 14, top : 10, right : 14, bottom : 10 }    
     }
 
+    /**
+     * @param {number} levelEnd - coordinate of the level end
+     * @returns clone of the original enemie
+     */
     clone(levelEnd) {
         return new SmallChicken(levelEnd)
     }
 
+    /**
+     * updates the movement
+     */
     updateMovement() {
         this.applyGravity();
         if(!this.isDead()) {
@@ -37,6 +48,4 @@ class SmallChicken extends Chicken {
             this.moveLeft();     
         }
     }
-
-
 }

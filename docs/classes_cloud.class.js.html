@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/cloud.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/cloud.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * represents the cloud element
+ */
+class Cloud extends BackgroundObject {
+    speed = 0.25;
+
+    /**
+     * @param {string} imgPath - img path of the cloud
+     * @param {number} x - x-coordinate of the cloud
+     */
+    constructor(imgPath, x) {
+        super(imgPath);
+        this.imgPath = imgPath;
+        this.x = x;
+    }
+    
+    /**
+     * @returns clone of the original cloud
+     */
+    clone() {
+        return new Cloud(this.imgPath, this.x)
+    }
+
+    /**
+     * updates movement
+     */
+    updateMovement() {
+        this.moveLeft();
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Bossbar.html">Bossbar</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CollectableBottle.html">CollectableBottle</a></li><li><a href="CollectableCoin.html">CollectableCoin</a></li><li><a href="CollectableObject.html">CollectableObject</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="Statusbar.html">Statusbar</a></li><li><a href="ThrowableBottle.html">ThrowableBottle</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addEventlistenerForFirstInteraction">addEventlistenerForFirstInteraction</a></li><li><a href="global.html#changeMuteIcon">changeMuteIcon</a></li><li><a href="global.html#changeMuteStatusTo">changeMuteStatusTo</a></li><li><a href="global.html#checkAndShowScreenInstruction">checkAndShowScreenInstruction</a></li><li><a href="global.html#checkForMuteSave">checkForMuteSave</a></li><li><a href="global.html#closeFullscreen">closeFullscreen</a></li><li><a href="global.html#controlButtonDown">controlButtonDown</a></li><li><a href="global.html#controlButtonUp">controlButtonUp</a></li><li><a href="global.html#enableAudio">enableAudio</a></li><li><a href="global.html#getExitButtonTemplate">getExitButtonTemplate</a></li><li><a href="global.html#getGameOverBackgroundTemplate">getGameOverBackgroundTemplate</a></li><li><a href="global.html#getHomeScreenTemplate">getHomeScreenTemplate</a></li><li><a href="global.html#getLoseButtonTemplate">getLoseButtonTemplate</a></li><li><a href="global.html#getStartButtonTemplate">getStartButtonTemplate</a></li><li><a href="global.html#getWinBackgroundTemplate">getWinBackgroundTemplate</a></li><li><a href="global.html#getWinButtonTemplate">getWinButtonTemplate</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAllSounds">loadAllSounds</a></li><li><a href="global.html#openFullscreen">openFullscreen</a></li><li><a href="global.html#openGameOverScreen">openGameOverScreen</a></li><li><a href="global.html#openHomeScreen">openHomeScreen</a></li><li><a href="global.html#openWinScreen">openWinScreen</a></li><li><a href="global.html#removeEventlistenerForFirstInteraction">removeEventlistenerForFirstInteraction</a></li><li><a href="global.html#restart">restart</a></li><li><a href="global.html#screenIsHorizontal">screenIsHorizontal</a></li><li><a href="global.html#screensizeMobile">screensizeMobile</a></li><li><a href="global.html#setGameControlButtons">setGameControlButtons</a></li><li><a href="global.html#setMobileButtonEventlisteners">setMobileButtonEventlisteners</a></li><li><a href="global.html#setTouchEndEventlistener">setTouchEndEventlistener</a></li><li><a href="global.html#setTouchEventlistener">setTouchEventlistener</a></li><li><a href="global.html#showTurnScreenInstruction">showTurnScreenInstruction</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#toggleControls">toggleControls</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleOverlay">toggleOverlay</a></li><li><a href="global.html#toggleVolume">toggleVolume</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Feb 13 2026 13:16:55 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

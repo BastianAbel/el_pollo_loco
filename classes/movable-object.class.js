@@ -1,3 +1,6 @@
+/**
+ * represents all movable objects
+ */
 class MovableObject extends DrawableObject {
     acceleration = 0.5;
     speedY = 0;
@@ -12,20 +15,34 @@ class MovableObject extends DrawableObject {
         super()
     }
 
+    /**
+     * increases x coordinate for right movement
+     */
     moveRight() {
         this.x = this.x + this.speed;
     };
 
+    /**
+     * decreases x coordinate for left movement
+     */
     moveLeft() {
         this.x -= this.speed
     }
 
+    /**
+     * initiates jump if object isnt in the air
+     */
     jump() {
         if (!this.isAboveGround()) {
             this.speedY = 15;
         }
     }
 
+    /**
+     * checks if the two objects are colliding
+     * @param {object} obj - object to check
+     * @returns boolean
+     */
     isColliding(obj) {
         const object1 = this.getBounds();
         const object2 = obj.getBounds();
@@ -36,6 +53,11 @@ class MovableObject extends DrawableObject {
         object1.bottom > object2.top;
     }
     
+    /**
+     * checks if object is dead and sets deathtime
+     * returns true if dead
+     * @returns boolean
+     */
     isDead() {
         if(this.hp <= 0 && !this.deathTime) {
             this.setDeathTime();
@@ -43,15 +65,25 @@ class MovableObject extends DrawableObject {
         return this.hp <= 0
     }
 
+    /**
+     * sets deathtime to current time
+     */
     setDeathTime() {
         this.deathTime = new Date().getTime();
     }
 
+    /**
+     * checks and returns true if object is dead for more than 5 seconds
+     * @returns boolean
+     */
     corpseRotting() {
         let currentTime = new Date().getTime();
         return this.deathTime + 5000 < currentTime
     }
 
+    /**
+     * decreases y-speed if object is in air
+     */
     applyGravity() {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY
@@ -59,15 +91,25 @@ class MovableObject extends DrawableObject {
             }
     }
 
+    /**
+     * checks and returns true if object is in air
+     * @returns boolean
+     */
     isAboveGround() {
         return this.y < this.baseY
     }
 
+    /**
+     * checks and returns true if is hurt and wasnt hurt last 0.5 seconds
+     */
     isHurt() {
         let currentTime = new Date().getTime();
         return this.lastHurt + 500 > currentTime
     }
 
+    /**
+     * plays death animation
+     */
     playDeathAnimation() {
         if (!this.dead) {
             this.dead = true;
@@ -76,6 +118,10 @@ class MovableObject extends DrawableObject {
         this.playAnimationOnce(this.IMAGES_DEAD);
     }
 
+    /**
+     * decreases health by incoming damage
+     * @param {number} dmg - incoming damage
+     */
     hurt(dmg) {
         this.hp -= dmg;
         if(this.hp < 0) {
@@ -84,7 +130,10 @@ class MovableObject extends DrawableObject {
         this.lastHurt = new Date().getTime();
     }
 
-
+    /**
+     * plays clone of the related sound
+     * @param {string} audioref - name of the sound
+     */
     playSoundClone(audioref) {
         const original = loadedAudios[audioref];
         const audioClone = new Audio(original.src);
@@ -93,17 +142,27 @@ class MovableObject extends DrawableObject {
         audioClone.play()
     }
   
-
+    /**
+     * plays related sound
+     * @param {string} audioref - name of the sound
+     */
     playSound(audioref) {
     const audio = loadedAudios[audioref];
     audio.play();
     }
 
+    /**
+     * pauses the played audio
+     * @param {string} audioref - name of the sound
+     */
     pauseSound(audioref) {
     const audio = loadedAudios[audioref];
     audio.pause();
     }
 
+    /**
+     * plays the death sound
+     */
     playDeathSound() {
         if(!this.dead) {
             this.playSoundClone(this.deathSound);

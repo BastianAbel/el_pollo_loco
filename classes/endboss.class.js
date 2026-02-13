@@ -1,3 +1,6 @@
+/**
+ * represents the endboss
+ */
 class Endboss extends MovableObject {
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -56,10 +59,16 @@ class Endboss extends MovableObject {
         this.damage = 20;
     }
 
+    /**
+     * @returns clone of the original endboss
+     */
     clone() {
         return new Endboss()
     }
 
+    /**
+     * updates boss movement
+     */
     updateMovement() {
         if(!this.isDead()) {
             if(this.agro == 2) {
@@ -68,6 +77,9 @@ class Endboss extends MovableObject {
         }
     }
     
+    /**
+     * updates boss animation
+     */
     updateAnimation() {
         if(this.isDead()) {
             this.playDeathSound();
@@ -83,6 +95,9 @@ class Endboss extends MovableObject {
         }else {}
     }
 
+    /**
+     * plays attack animation
+     */
     setAttackAnimation() {
         if(this.isColliding(this.world.character)) {
             this.playAnimation(this.IMAGES_ATTACK);
@@ -91,12 +106,18 @@ class Endboss extends MovableObject {
         }
     }
     
+    /**
+     * updates sound
+     */
     updateSound() {
         if(this.agro == 1) {
             this.playSound("angryChicken")
         }
     }
 
+    /**
+     * activates agro of the boss
+     */
     activateAgro() {
         let playerX = this.world.character.x;
         if(playerX + 450 >= this.x && this.agro === 0) {
@@ -104,6 +125,9 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * plays alert animation
+     */
     playAlertAnimation() {
         if(this.status == "idle") {
             this.alertTime = new Date().getTime();
@@ -118,6 +142,9 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * updates movement towards player
+     */
     moveTowardsPlayer() {
         if(this.x > this.world.character.x) {
             this.moveLeft();
@@ -128,6 +155,10 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * removes damage from current hb and updates bossbar
+     * @param {number} dmg - incoming damage
+     */
     hurt(dmg) {
         this.hp -= dmg;
         this.world.bossBar.updateStatusbar(this.hp / 100);
@@ -138,10 +169,17 @@ class Endboss extends MovableObject {
         this.lastHurt = new Date().getTime();
     }
 
+    /**
+     * checks if the boss was already seen
+     * @returns boolean
+     */
     firstEncounter() {
         return !this.world.bossBar && this.world.character.x + 600 >= this.x && this.hp > 0
     }
 
+    /**
+     * adds healthbar for the boss
+     */
     setHealthbar() {
         this.world.bossBar = new Bossbar("img/7_statusbars/3_icons/icon_health_endboss.png", 10, 1);
     }
