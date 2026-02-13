@@ -56,7 +56,7 @@ class Endboss extends MovableObject {
         this.damage = 20;
     }
 
-    clone(levelEnd) {
+    clone() {
         return new Endboss()
     }
 
@@ -79,12 +79,16 @@ class Endboss extends MovableObject {
         }else if(this.agro == 1) {
             this.playAlertAnimation();
         }else if(this.agro == 2) {
-            if(this.isColliding(this.world.character)) {
-                this.playAnimation(this.IMAGES_ATTACK);
-            } else {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
+            this.setAttackAnimation();
         }else {}
+    }
+
+    setAttackAnimation() {
+        if(this.isColliding(this.world.character)) {
+            this.playAnimation(this.IMAGES_ATTACK);
+        } else {
+            this.playAnimation(this.IMAGES_WALKING);
+        }
     }
     
     updateSound() {

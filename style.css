@@ -347,6 +347,11 @@ canvas {
 
 }
 
+.movement-controls button {
+    display: none;
+    visibility: hidden;
+}
+
 @media(max-width: 1024px), (max-height: 1024px) {
     .game-header {
         display: none;
@@ -406,4 +411,8 @@ canvas {
         visibility: visible;
     }
 
+    .movement-controls button {
+        display: block;
+        visibility: visible;
+    }
 }

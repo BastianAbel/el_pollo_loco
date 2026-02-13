@@ -87,13 +87,22 @@ class Character extends MovableObject {
     updateMovement() {
         if (!this.isDead()) {
             this.applyGravity()
+            this.tryThrowing();
+            this.tryMoving();
+            this.tryJumping();
+            this.world.camera_x = -this.x + 100;
+        }
+    }
 
+    tryThrowing() {
             if (this.world.keyboard.throw) {
                 this.startThrowing();
             } else {
                 this.stopThrowing();
             }
+    }
 
+    tryMoving() {
             if (this.world.keyboard.right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.flipImage = false;
@@ -103,13 +112,13 @@ class Character extends MovableObject {
                 this.flipImage = true;
                 this.firstMove = true;
             }
+    }
 
+    tryJumping() {
             if (this.world.keyboard.jump) {
                 this.jump();
                 this.firstMove = true;
             }
-            this.world.camera_x = -this.x + 100;
-        }
     }
 
     jumpsOn(obj) {
