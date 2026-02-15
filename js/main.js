@@ -93,7 +93,6 @@ function showTurnScreenInstruction() {
     }else {
         containerRef.classList.add('d-none');
     }
-    console.log('process finished')
 }
 
 /**

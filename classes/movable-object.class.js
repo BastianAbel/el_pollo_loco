@@ -36,7 +36,6 @@ class MovableObject extends DrawableObject {
         if (!this.isAboveGround()) {
             this.speedY = (15 * factor);
         }
-        console.log('jumps')
     }
 
     /**
