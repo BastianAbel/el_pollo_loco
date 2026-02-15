@@ -402,9 +402,21 @@ class Character extends MovableObject {
      * initiates a throw and updates bar and bottle count
      */
     throw() {
-        this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y, this.flipImage))
-        this.bottles -= 1;
-        this.world.bottleBar.updateStatusbar(this.bottles / 10);
-        this.playThrowSound();
+        if(!this.throwToEarly()) {
+            this.world.throwables.push(new ThrowableBottle(this.world, this.x, this.y, this.flipImage))
+            this.bottles -= 1;
+            this.world.bottleBar.updateStatusbar(this.bottles / 10);
+            this.playThrowSound();
+            this.lastThrow = new Date().getTime();
+        }
+    }
+
+    /**
+     * checks if more than 0.3 seconds have passed since the last throw
+     * @returns boolean
+     */
+    throwToEarly() {
+        let currentTime = new Date().getTime();
+        return this.lastThrow + 300 > currentTime
     }
 }
