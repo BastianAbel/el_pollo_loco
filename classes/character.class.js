@@ -62,7 +62,7 @@ class Character extends MovableObject {
     world;
     coins = 0;
     bottles = 0;
-    baseY = 128;
+    baseY = 131;
     idle = false;
     lastHurt = 0;
     dead = false;
@@ -135,7 +135,7 @@ class Character extends MovableObject {
      */
     tryJumping() {
             if (this.world.keyboard.jump) {
-                this.jump();
+                this.jump(1);
                 this.firstMove = true;
             }
     }

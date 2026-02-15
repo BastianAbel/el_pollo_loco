@@ -32,10 +32,11 @@ class MovableObject extends DrawableObject {
     /**
      * initiates jump if object isnt in the air
      */
-    jump() {
+    jump(factor) {
         if (!this.isAboveGround()) {
-            this.speedY = 15;
+            this.speedY = (15 * factor);
         }
+        console.log('jumps')
     }
 
     /**
@@ -96,7 +97,7 @@ class MovableObject extends DrawableObject {
      * @returns boolean
      */
     isAboveGround() {
-        return this.y < this.baseY
+        return this.y < (this.baseY)
     }
 
     /**

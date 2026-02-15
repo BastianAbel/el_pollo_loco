@@ -90,7 +90,7 @@ class World {
         if(this.character.isColliding(enemy)) {
             if(this.character.jumpsOn(enemy) && !(enemy instanceof Endboss) && !enemy.isDead()) {
                 enemy.hurt(enemy.hp);
-                this.character.speedY = 15;
+                this.character.speedY = (15 * 0.7);
             }else if(!this.character.isDead() && !this.character.isHurt() && !enemy.hp == 0 && !this.character.isHigherThan(enemy)) {
                 this.character.hurt(enemy.damage);
             }
