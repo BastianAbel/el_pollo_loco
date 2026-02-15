@@ -87,8 +87,6 @@ const userInteractionEvents = [
     "click",
     "mousedown",
     "mouseup",
-    "keydown",
-    "keyup",
     "touchstart",
     "touchend",
     "pointerdown",
