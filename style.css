@@ -353,7 +353,7 @@ canvas {
     visibility: hidden;
 }
 
-@media(max-width: 1024px), (max-height: 1024px) {
+@media(hover: none) and (pointer: coarse) {
     .game-header {
         display: none;
     }
@@ -415,5 +415,11 @@ canvas {
     .movement-controls button {
         display: block;
         visibility: visible;
+    }
+
+    .help-overlay-desktop-button,
+    .fullscreen-button {
+        display: none;
+        visibility: hidden;
     }
 }
