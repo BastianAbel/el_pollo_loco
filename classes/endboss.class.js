@@ -51,12 +51,12 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2600;
-        this.speed = 2;
+        this.speed = 3;
         this.offset = { left : 20, top : 50, right : 5, bottom : 15 }
         this.width = 250;
         this.height = 300;
         this.y = 135;
-        this.damage = 20;
+        this.damage = 25;
     }
 
     /**

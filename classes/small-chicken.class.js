@@ -12,6 +12,8 @@ class SmallChicken extends Chicken {
     ];
     standartSound = 'chickChirp';
     deathSound = 'chickenHurt';
+    damage = 10;
+    baseY = 350;
 
     /**
      * @param {number} levelEnd - coordinate of the level end
@@ -22,7 +24,9 @@ class SmallChicken extends Chicken {
         this.loadImages(this.IMAGES_DEAD);
         this.x = (Math.random() * (levelEnd - 500)) + 650;
         this.speed = this.baseSpeed * (Math.random() * 0.5) + 0.3;
-        this.offset = { left : 14, top : 10, right : 14, bottom : 10 }    
+        this.offset = { left : 14, top : 10, right : 14, bottom : 10 };
+        this.width = this.width * 0.6;
+        this.height = this.height * 0.6;   
     }
 
     /**

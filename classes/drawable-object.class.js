@@ -37,17 +37,17 @@ class DrawableObject {
     /**
      * draws boxes for element hitbox and size visualisation
      */
-    drawFrame() {
+    drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof CollectableObject) {
-            this.drawImgSize();
-            this.drawHitbox();
+            this.drawImgSize(ctx);
+            this.drawHitbox(ctx);
         }
     }
 
     /**
      * draws rectangle for img size
      */
-    drawImgSize() {
+    drawImgSize(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
@@ -58,7 +58,7 @@ class DrawableObject {
     /**
      * draws rectangle/hitbox for element
      */
-    drawHitbox() {
+    drawHitbox(ctx) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'red';

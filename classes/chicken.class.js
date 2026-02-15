@@ -13,7 +13,7 @@ class Chicken extends MovableObject {
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
-    damage = 5;
+    damage = 15;
     standartSound = 'chickenClucking';
     deathSound = 'chickenHurt';
 
