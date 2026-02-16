@@ -87,7 +87,7 @@ class Endboss extends MovableObject {
         }else if(this.isHurt()) {            
             this.playAnimation(this.IMAGES_HURT);
         }else if(this.agro == 0) {
-            this.loadImg('img/4_enemie_boss_chicken/1_walk/G2.png');
+            this.img = this.imageCache[this.IMAGES_WALKING[1]]
         }else if(this.agro == 1) {
             this.playAlertAnimation();
         }else if(this.agro == 2) {
