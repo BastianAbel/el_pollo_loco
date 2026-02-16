@@ -69,7 +69,7 @@ function checkAndShowScreenInstruction() {
 function screensizeMobile() {
     const screenWidth = document.documentElement.clientWidth;
     const screenHeight = document.documentElement.clientHeight;
-    const mobileMaxSize = 1024;
+    const mobileMaxSize = 1500;
     return (screenWidth < mobileMaxSize) || (screenHeight < mobileMaxSize)
 }
 

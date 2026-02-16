@@ -318,10 +318,6 @@ canvas {
             height: 70%;
             aspect-ratio: 1 / 1;
         }
-
-        && span {
-            font-size: 2cqh;
-        }
     }
 }
 
@@ -422,4 +418,13 @@ canvas {
         display: none;
         visibility: hidden;
     }
+
+    .game-controls, .movement-controls {
+        && button {
+            && span {
+                font-size: 2cqh;
+            }
+        }
+    }
+
 }

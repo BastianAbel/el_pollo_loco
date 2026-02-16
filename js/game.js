@@ -10,7 +10,6 @@ function init() {
     world = new World(canvas);
     checkAndShowScreenInstruction()
     setMobileButtonEventlisteners()
-    addEventlistenerForFirstInteraction()
     window.addEventListener('resize', checkAndShowScreenInstruction);
 }
 
@@ -21,6 +20,7 @@ function start() {
     world.startGame();
     toggleOverlay('overlay');   
     toggleControls();
+    enableAudio();
 }
 
 /**

@@ -83,41 +83,23 @@ let audioInfList = {
 
 let loadedAudios = {};
 
+let firstInteraction = false;
+
 const userInteractionEvents = [
     "click",
-    "mousedown",
-    "mouseup",
+    // "mousedown",
     "touchstart",
-    "touchend",
-    "pointerdown",
-    "pointerup"
+    // "pointerdown",
 ];
-
-/**
- * sets eventlistener to detect interaction
- */
-function addEventlistenerForFirstInteraction() {
-    userInteractionEvents.forEach((interaction) => {
-        document.addEventListener(interaction, enableAudio)
-    })
-}
-
-/**
- * removes eventlistener to detect interaction
- */
-function removeEventlistenerForFirstInteraction() {
-    userInteractionEvents.forEach((interaction) => {
-        document.removeEventListener(interaction, enableAudio)
-    })
-}
 
 /**
  * enables the sounds after first interaction
  */
 function enableAudio() {
-    loadedAudios.music.play().then(() => {
-        removeEventlistenerForFirstInteraction();
-    });
+    if(!firstInteraction) {
+        firstInteraction = true;
+        loadedAudios.music.play();
+    }
 }
 
 /**
@@ -131,7 +113,7 @@ function loadAllSounds() {
         audio.src = audioInfList[keys[i]]['src'];
         audio.volume = audioInfList[keys[i]]['volume'];
         audio.preload = 'auto';
-        audio.autoplay = audioInfList[keys[i]]['autoplay'];
+        audio.autoplay = false;
         audio.loop = audioInfList[keys[i]]['loop'];
         audio.muted = muted;
     }

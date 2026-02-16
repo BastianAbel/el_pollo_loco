@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'rye';
-    src: url('/fonts/Rye-Regular.ttf');
+    src: url('../fonts/Rye-Regular.ttf');
 }
 
 html, body {
@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('/img/bg-image-canyon.png');
+    background-image: url('../img/bg-image-canyon.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
