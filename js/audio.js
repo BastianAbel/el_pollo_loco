@@ -85,13 +85,6 @@ let loadedAudios = {};
 
 let firstInteraction = false;
 
-const userInteractionEvents = [
-    "click",
-    // "mousedown",
-    "touchstart",
-    // "pointerdown",
-];
-
 /**
  * enables the sounds after first interaction
  */
