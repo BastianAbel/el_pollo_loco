@@ -2,7 +2,7 @@
  * represents a thrown bottle
  */
 class ThrowableBottle extends ThrowableObject {
-    speedY = 15;
+    speedY = 10;
     y = 250;
     x = 200;
     height = 80;
