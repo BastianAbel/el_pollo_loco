@@ -375,7 +375,7 @@ canvas {
     width: 100vw;
     position: relative;
     background-color: rgb(20, 19, 35);
-    background-image: url('../img/bg-image-canyon.png');
+    background-image: url('img/bg-image-canyon.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
