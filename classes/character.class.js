@@ -72,7 +72,6 @@ class Character extends MovableObject {
     deathSound = 'death'
 
     /**
-     * 
      * @param {object} world - needs the world object of the game
      */
     constructor(world) {
