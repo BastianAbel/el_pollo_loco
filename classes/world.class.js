@@ -207,7 +207,7 @@ class World {
      */
     addToMap(obj) {
         obj.draw(this.ctx);
-        // obj.drawFrame(this.ctx);        
+        obj.drawFrame(this.ctx);        
     }
 
     /**
