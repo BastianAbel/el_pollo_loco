@@ -307,8 +307,8 @@ canvas {
 
     && button {
         height: 16%;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
+        border-radius: 9999px;
+        padding: 8px;
 
         && img {
             height: 70%;
@@ -347,6 +347,14 @@ canvas {
 .movement-controls button {
     display: none;
     visibility: hidden;
+}
+
+.game-controls, .movement-controls {
+    && button {
+        && span {
+            font-size: 2cqh;
+        }
+    }
 }
 
 @media(hover: none) and (pointer: coarse) {
@@ -418,13 +426,4 @@ canvas {
         display: none;
         visibility: hidden;
     }
-
-    .game-controls, .movement-controls {
-        && button {
-            && span {
-                font-size: 2cqh;
-            }
-        }
-    }
-
 }
