@@ -108,10 +108,8 @@ class Character extends MovableObject {
      * initiate bottle throw if input is true
      */
     tryThrowing() {
-            if (this.world.keyboard.throw) {
-                this.startThrowing();
-            } else {
-                this.stopThrowing();
+            if (this.world.keyboard.throw && this.bottles > 0) {
+                this.throw();
             }
     }
 
@@ -352,7 +350,7 @@ class Character extends MovableObject {
      */
     collectBottle(bottle) {
         if (this.bottles < 10) {
-            bottle.relocate(this.world.level.level_end_x);
+            this.world.level.bottles = this.world.level.bottles.filter(b => b !== bottle);
             this.bottles += 1;
             this.world.bottleBar.updateStatusbar(this.bottles / 10);
             this.playBottlePickupSound();
@@ -368,34 +366,6 @@ class Character extends MovableObject {
             this.coins += 1;
             this.world.coinBar.updateStatusbar(this.coins / this.world.level_max_coins);
             this.playCoinPickupSound();
-    }
-
-    /**
-     * starts bottle throwing
-     */
-    startThrowing() {
-        if (!this.throwing && this.bottles > 0) {
-            this.throwing = true;
-            this.throw();
-            this.thowingInterval = setInterval(() => {
-                if (this.bottles <= 0) {
-                    this.stopThrowing();
-                }
-                if(this.bottles > 0) {
-                    this.throw();
-                }
-            }, 250)
-        }
-    }
-
-    /**
-     * stops bottle throwing
-     */
-    stopThrowing() {
-        if (this.throwing) {
-            clearInterval(this.thowingInterval);
-            this.throwing = false
-        }
     }
 
     /**
@@ -417,6 +387,6 @@ class Character extends MovableObject {
      */
     throwToEarly() {
         let currentTime = new Date().getTime();
-        return this.lastThrow + 300 > currentTime
+        return this.lastThrow + 500 > currentTime
     }
 }
