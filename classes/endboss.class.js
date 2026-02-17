@@ -120,7 +120,7 @@ class Endboss extends MovableObject {
      */
     activateAgro() {
         let playerX = this.world.character.x;
-        if(playerX + 450 >= this.x && this.agro === 0) {
+        if(playerX + 650 >= this.x && this.agro === 0) {
             this.agro = 1;
         }
     }
