@@ -75,7 +75,7 @@ canvas {
     z-index: 3;
 }
 
-.top-controls button img {
+.top-controls img {
     height: 32px;
     width: 32px;
 }
@@ -309,6 +309,7 @@ canvas {
         height: 16%;
         border-radius: 9999px;
         padding: 8px;
+        aspect-ratio: 1/1;
 
         && img {
             height: 70%;
@@ -319,6 +320,10 @@ canvas {
             aspect-ratio: 1 / 1;
         }
     }
+}
+
+.movement-controls button {
+    aspect-ratio: 1/1;
 }
 
 .btn-throw:disabled, 
@@ -357,6 +362,10 @@ canvas {
     }
 }
 
+.restart-button {
+    margin-bottom: 8px;
+}
+
 @media(hover: none) and (pointer: coarse) {
     .game-header {
         display: none;
@@ -387,10 +396,16 @@ canvas {
 
     .game-controls, .movement-controls {
         && button {
+            aspect-ratio: 1/1;
+
             && span {
-            font-size: 3cqh;
+            font-size: 5cqh;
             }
         }
+    }
+
+    .no-aspect-ratio {
+        aspect-ratio: unset !important;
     }
 
     .impressum-link {
@@ -417,13 +432,22 @@ canvas {
     }
 
     .movement-controls button {
-        display: block;
+        display: flex;
         visibility: visible;
+        align-items: center;
+        justify-content: center;
     }
 
     .help-overlay-desktop-button,
     .fullscreen-button {
         display: none;
         visibility: hidden;
+    }
+
+    .top-controls img {
+        height: 32px;
+        width: 32px;
+        height: 5vh !important;
+        width: 5vh !important;
     }
 }

@@ -58,7 +58,7 @@ function getExitButtonTemplate() {
  */
 function getWinButtonTemplate() {
     return `
-        <button class="styled-button restart-button" onclick=(restart())>
+        <button class="styled-button restart-button no-aspect-ratio" onclick=(restart())>
             <span>nochmal?</span>
         </button>
     `
@@ -70,7 +70,7 @@ function getWinButtonTemplate() {
  */
 function getLoseButtonTemplate() {
     return `
-        <button class="styled-button restart-button" onclick=(restart())>
+        <button class="styled-button restart-button no-aspect-ratio" onclick=(restart())>
             <span>nochmal!</span>
         </button>
     `
