@@ -338,11 +338,6 @@ canvas {
     }
 }
 
-.impressum-game-link {
-    display: none;
-    visibility: hidden;
-}
-
 .styled-button:disabled {
     height: 64px;
     aspect-ratio: 1 / 1;
@@ -366,25 +361,87 @@ canvas {
     margin-bottom: 8px;
 }
 
+.impressum-overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.impressum {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: rgb(20, 19, 35);
+    background-image: url('../img/bg-image-canyon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    text-shadow: 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black;
+    text-align: center;
+    overflow-y: scroll;
+
+    && a {
+        font-size: 18px;
+        color: white;
+    }   
+
+    && p {
+        font-size: 18px;
+    }
+
+    && h1, h2, a, p {
+        padding: 0 16px;
+    }
+
+    && .note {
+        padding-bottom: 64px;
+    }
+}
+
+.close-impressum {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.open-impressum {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.no-aspect-ratio {
+    aspect-ratio: unset !important;
+}
+
 @media(hover: none) and (pointer: coarse) {
     .game-header {
         display: none;
-    }
+    }    
 
     #container {
         height: 100dvh !important;
         width: 100dvw !important;
         position: fixed;
         inset: 0;
-    }
+    }    
 
     canvas {
         height: 100dvh;
         width: 100dvw;
-    }
+    }    
 
     .bottom-controls {
-    display: flex;
+    display: flex;    
     }
 
     #forceHorizontalScreenOverlay {
@@ -392,36 +449,17 @@ canvas {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
+    }    
 
     .game-controls, .movement-controls {
         && button {
             aspect-ratio: 1/1;
 
             && span {
-            font-size: 5cqh;
+            font-size: 5cqh;    
             }
-        }
-    }
-
-    .no-aspect-ratio {
-        aspect-ratio: unset !important;
-    }
-
-    .impressum-link {
-        display: none;
-        visibility: hidden;
-    }
-
-    .impressum-game-link {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: block;
-        visibility: visible;
-        padding: 4px;
-        z-index: 9999;
-    }
+        }    
+    }    
 
     .btn-throw:disabled, 
     .btn-left:disabled, 

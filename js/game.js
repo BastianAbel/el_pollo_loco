@@ -19,6 +19,7 @@ function init() {
 function start() {
     world.startGame();
     toggleOverlay('overlay');   
+    toggleOverlay('open-impressum');   
     toggleControls();
     enableAudio();
 }
@@ -68,7 +69,8 @@ function openHomeScreen() {
     const gameWonTemplate = getHomeScreenTemplate();
     let gameoverlayRef = document.getElementById('overlay');
     gameoverlayRef.innerHTML = gameWonTemplate;
-    setGameControlButtons('exit')
+    setGameControlButtons('exit');
+    toggleOverlay('open-impressum');
 }
 
 /**
